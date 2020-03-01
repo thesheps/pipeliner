@@ -3,7 +3,7 @@ export class Step {
   readonly func: Function;
 
   constructor(name: string, func?: Function) {
-    if (!name) throw new Error("Step Name cannot be empty!");
+    if (!name) throw new Error("Name cannot be empty!");
 
     this.name = name;
     this.func = func;
