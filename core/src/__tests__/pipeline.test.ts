@@ -14,6 +14,10 @@ describe("Pipeline", () => {
     expect(() => pipeline("")).toThrowError();
   });
 
+  it("does not allow undefined names", () => {
+    expect(() => pipeline(undefined)).toThrowError();
+  });
+
   it("takes an array of stages", () => {
     const stageName = "Test Step";
     const testPipeline = pipeline("Test Pipeline", [stage(stageName)]);
@@ -50,5 +54,28 @@ describe("Pipeline", () => {
     expect(stepFn3).toHaveBeenCalledBefore(stepFn4);
     expect(stepFn4).toHaveBeenCalledBefore(stepFn5);
     expect(stepFn5).toHaveBeenCalledBefore(stepFn6);
+  });
+
+  it("halts execution when an error is encountered", () => {
+    const errorMessage = "Something bad happened!";
+
+    const stepFn1 = jest.fn().mockImplementation(() => {
+      throw new Error(errorMessage);
+    });
+
+    const stepFn2 = jest.fn();
+    const testPipeline = pipeline("Test Pipeline", [
+      stage("Test Stage", [
+        step("Test Step 1", stepFn1),
+        step("Test Step 2", stepFn2)
+      ])
+    ]);
+
+    const thrownMessage = `Error: Test Stage: Test Step 1 failed to complete (Error: ${errorMessage})`;
+    expect(() => testPipeline.execute()).toThrowError(
+      `Pipeliner Execution Halted - ${thrownMessage}`
+    );
+    expect(stepFn1).toHaveBeenCalled();
+    expect(stepFn2).not.toHaveBeenCalled();
   });
 });

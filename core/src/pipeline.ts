@@ -9,12 +9,14 @@ export class Pipeline {
 
     this.name = name;
     this.stages = stages;
-
-    this.execute();
   }
 
   execute() {
-    this.stages.forEach(s => s.execute());
+    try {
+      this.stages.forEach(s => s.execute());
+    } catch (e) {
+      throw new Error(`Pipeliner Execution Halted - ${e}`);
+    }
   }
 }
 

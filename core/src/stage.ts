@@ -12,7 +12,15 @@ export class Stage {
   }
 
   execute() {
-    this.items.forEach(s => s instanceof Step && s.func());
+    this.items.forEach(s => {
+      if (s instanceof Step) {
+        try {
+          s.func();
+        } catch (e) {
+          throw new Error(`${this.name}: ${s.name} failed to complete (${e})`);
+        }
+      }
+    });
   }
 }
 
