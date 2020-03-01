@@ -1,4 +1,4 @@
-import step from "../step";
+import { step } from "../step";
 
 describe("Step", () => {
   it("can be named", () => {

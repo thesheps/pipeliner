@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 
-export default (filename: string) => {
+export const parse = (filename: string) => {
   try {
     const fileContents = readFileSync(filename);
     const text = fileContents.toString();

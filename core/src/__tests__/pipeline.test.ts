@@ -1,6 +1,8 @@
-import stage from "../stage";
-import step from "../step";
-import pipeline from "../pipeline";
+import "jest-extended";
+
+import { stage } from "../stage";
+import { step } from "../step";
+import { pipeline } from "../pipeline";
 
 describe("Pipeline", () => {
   it("can be named", () => {

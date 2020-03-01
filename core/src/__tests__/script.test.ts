@@ -2,7 +2,7 @@ import { exec } from "child_process";
 import { existsSync } from "fs";
 import { when } from "jest-when";
 
-import script from "../script";
+import { script } from "../script";
 
 jest.mock("child_process");
 jest.mock("fs");

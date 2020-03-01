@@ -20,5 +20,5 @@ export class Pipeline {
   }
 }
 
-export default (name: string, stages: Stage[] = []) =>
+export const pipeline = (name: string, stages: Stage[] = []) =>
   new Pipeline(name, stages);

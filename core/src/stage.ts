@@ -24,5 +24,5 @@ export class Stage {
   }
 }
 
-export default (name: string, items: (Step | string)[] = []) =>
+export const stage = (name: string, items: (Step | string)[] = []) =>
   new Stage(name, items);

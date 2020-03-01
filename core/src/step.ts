@@ -10,5 +10,5 @@ export class Step {
   }
 }
 
-export default (name: string, func: Function = () => {}) =>
+export const step = (name: string, func: Function = () => {}) =>
   new Step(name, func);

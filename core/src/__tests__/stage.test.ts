@@ -1,7 +1,7 @@
 import "jest-extended";
 
-import stage from "../stage";
-import step, { Step } from "../step";
+import { stage } from "../stage";
+import { step, Step } from "../step";
 
 describe("Stage", () => {
   it("can be named", () => {

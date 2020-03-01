@@ -1,7 +1,7 @@
 import { exec } from "child_process";
+import { existsSync } from "fs";
 
 import { Step } from "./step";
-import { existsSync } from "fs";
 
 export class Script extends Step {
   constructor(name: string, script: string) {
@@ -18,4 +18,5 @@ export class Script extends Step {
   }
 }
 
-export default (name: string, script: string) => new Script(name, script);
+export const script = (name: string, script: string) =>
+  new Script(name, script);

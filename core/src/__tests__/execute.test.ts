@@ -1,11 +1,11 @@
-import execute from "../execute";
-import stage from "../stage";
+import { execute } from "../execute";
+import { stage } from "../stage";
 import { Step } from "../step";
 
 const executeFn = jest.fn();
 
 jest.mock("../pipeline", () => ({
-  default: () => ({ execute: executeFn })
+  pipeline: () => ({ execute: executeFn })
 }));
 
 jest.mock("../stage");

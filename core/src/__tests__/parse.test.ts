@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
 import { when } from "jest-when";
 
-import parse from "../parse";
+import { parse } from "../parse";
 
 const existingFilename = "pipeliner.json";
 const missingFilename = "missing.json";
