@@ -4,7 +4,7 @@ export class Stage {
   readonly name: string;
   readonly items: ReadonlyArray<Step | string>;
 
-  constructor(name: string, items: (Step | string)[]) {
+  constructor(name: string, items?: (Step | string)[]) {
     if (!name) throw new Error("Stage Name cannot be empty!");
 
     this.name = name;
@@ -16,5 +16,5 @@ export class Stage {
   }
 }
 
-export default (name: string, items: (Step | string)[] = []): Stage =>
+export default (name: string, items: (Step | string)[] = []) =>
   new Stage(name, items);

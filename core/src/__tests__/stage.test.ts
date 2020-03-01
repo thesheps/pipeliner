@@ -1,6 +1,7 @@
+import "jest-extended";
+
 import stage from "../stage";
 import step, { Step } from "../step";
-import variable from "../variable";
 
 describe("Stage", () => {
   it("can be named", () => {
@@ -36,22 +37,5 @@ describe("Stage", () => {
 
     expect(stepFn1).toHaveBeenCalledBefore(stepFn2);
     expect(stepFn2).toHaveBeenCalledBefore(stepFn3);
-  });
-
-  it("shares variables between steps", () => {
-    const message = "Hello";
-
-    const testStage = stage("Test Stage", [
-      variable("testValue", message),
-
-      step("Add to message", () => {
-        const message = variable("testValue");
-        variable("testValue", message + ", World!");
-      })
-    ]);
-
-    testStage.execute();
-
-    expect(variable("testValue")).toBe("Hello, World!");
   });
 });
