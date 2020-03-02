@@ -3,6 +3,13 @@ import "jest-extended";
 import { stage } from "../stage";
 import { step, Step } from "../step";
 
+const errorFn = jest.fn();
+
+jest.mock("pino", () => () => ({
+  info: jest.fn(),
+  error: (message: string) => errorFn(message)
+}));
+
 describe("Stage", () => {
   it("can be named", () => {
     const stageName = "Test Stage";
@@ -57,9 +64,9 @@ describe("Stage", () => {
       step("Test Step 2", stepFn2)
     ]);
 
-    expect(() => testStage.execute()).toThrowError(
-      `Test Stage: Test Step 1 failed to complete (Error: ${errorMessage})`
-    );
+    testStage.execute();
+
+    expect(errorFn).toHaveBeenCalled();
     expect(stepFn1).toHaveBeenCalled();
     expect(stepFn2).not.toHaveBeenCalled();
   });

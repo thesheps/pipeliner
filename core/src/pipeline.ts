@@ -1,3 +1,4 @@
+import { logWithDuration } from "./logger";
 import { Stage } from "./stage";
 
 export class Pipeline {
@@ -12,13 +13,13 @@ export class Pipeline {
   }
 
   execute() {
-    console.log(`Executing Pipeline '${this.name}'...`);
-
-    try {
-      this.stages.forEach(s => s.execute());
-    } catch (e) {
-      throw new Error(`Pipeliner Execution Halted - ${e}`);
-    }
+    logWithDuration(`Executing Pipeline '${this.name}'...`, () => {
+      try {
+        this.stages.forEach(s => s.execute());
+      } catch (e) {
+        throw new Error(`Pipeliner Execution Halted - ${e}`);
+      }
+    });
   }
 }
 

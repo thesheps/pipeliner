@@ -1,8 +1,15 @@
 import "jest-extended";
 
+import { pipeline } from "../pipeline";
 import { stage } from "../stage";
 import { step } from "../step";
-import { pipeline } from "../pipeline";
+
+const errorFn = jest.fn();
+
+jest.mock("pino", () => () => ({
+  info: jest.fn(),
+  error: () => errorFn()
+}));
 
 describe("Pipeline", () => {
   it("can be named", () => {
@@ -73,10 +80,9 @@ describe("Pipeline", () => {
       ])
     ]);
 
-    const thrownMessage = `Error: Test Stage: Test Step 1 failed to complete (Error: ${errorMessage})`;
-    expect(() => testPipeline.execute()).toThrowError(
-      `Pipeliner Execution Halted - ${thrownMessage}`
-    );
+    testPipeline.execute();
+
+    expect(errorFn).toHaveBeenCalled();
     expect(stepFn1).toHaveBeenCalled();
     expect(stepFn2).not.toHaveBeenCalled();
   });
