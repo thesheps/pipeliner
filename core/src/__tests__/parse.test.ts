@@ -21,7 +21,7 @@ when(readFileSync as jest.Mock)
 when(readFileSync as jest.Mock)
   .calledWith(missingFilename)
   .mockImplementation(() => {
-    throw new Error();
+    throw new Error("it broke");
   });
 
 describe("Parse", () => {
@@ -32,13 +32,13 @@ describe("Parse", () => {
 
   it("throws on a missing config file", () => {
     expect(() => parse(missingFilename)).toThrowError(
-      `The specified pipeliner file ${missingFilename} cannot be opened!`
+      `The specified pipeliner file ${missingFilename} cannot be opened - it broke`
     );
   });
 
   it("throws on an invalid config file", () => {
     expect(() => parse(invalidFilename)).toThrowError(
-      `The specified pipeliner file ${invalidFilename} cannot be opened!`
+      `The specified pipeliner file ${invalidFilename} cannot be opened - Unexpected token I in JSON at position 0`
     );
   });
 });
