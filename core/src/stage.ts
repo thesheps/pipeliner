@@ -12,9 +12,12 @@ export class Stage {
   }
 
   execute() {
+    console.log(`Executing Stage '${this.name}'...`);
+
     this.items.forEach(s => {
       if (s instanceof Step) {
         try {
+          console.log(`Executing Step '${s.name}'...`);
           s.func();
         } catch (e) {
           throw new Error(`${this.name}: ${s.name} failed to complete (${e})`);

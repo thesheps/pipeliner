@@ -12,6 +12,8 @@ export class Pipeline {
   }
 
   execute() {
+    console.log(`Executing Pipeline '${this.name}'...`);
+
     try {
       this.stages.forEach(s => s.execute());
     } catch (e) {
