@@ -1,7 +1,9 @@
-import { logger, logWithDuration, logWithDurationAndThrow } from "./logger";
+import { logWithDuration, logWithDurationAndThrow } from "./logger";
+import { Loggable } from "./Loggable";
 import { Step } from "./step";
 
-export class Stage {
+export class Stage implements Loggable {
+  readonly type = "Stage";
   readonly name: string;
   readonly items: ReadonlyArray<Step | string>;
 
@@ -13,16 +15,16 @@ export class Stage {
   }
 
   execute() {
-    logWithDuration(`Executing Stage '${this.name}'...`, () => {
-      this.items.forEach(s => {
-        if (s instanceof Step) {
+    logWithDuration(this, () => {
+      this.items.forEach(item => {
+        if (item instanceof Step) {
           try {
-            logWithDurationAndThrow(`Executing Step '${s.name}'...`, () => {
-              s.func();
+            logWithDurationAndThrow(item, () => {
+              item.func();
             });
           } catch (e) {
             throw new Error(
-              `${this.name}: ${s.name} failed to complete (${e})`
+              `${this.name}: ${item.name} failed to complete (${e})`
             );
           }
         }

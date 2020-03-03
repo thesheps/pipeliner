@@ -1,4 +1,7 @@
-export class Step {
+import { Loggable } from "./Loggable";
+
+export class Step implements Loggable {
+  readonly type = "Step";
   readonly name: string;
   readonly func: Function;
 

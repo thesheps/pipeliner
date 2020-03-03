@@ -1,7 +1,9 @@
 import { logWithDuration } from "./logger";
+import { Loggable } from "./Loggable";
 import { Stage } from "./stage";
 
-export class Pipeline {
+export class Pipeline implements Loggable {
+  readonly type = "Pipeline";
   readonly name: string;
   readonly stages: ReadonlyArray<Stage>;
 
@@ -13,7 +15,7 @@ export class Pipeline {
   }
 
   execute() {
-    logWithDuration(`Executing Pipeline '${this.name}'...`, () => {
+    logWithDuration(this, () => {
       try {
         this.stages.forEach(s => s.execute());
       } catch (e) {
