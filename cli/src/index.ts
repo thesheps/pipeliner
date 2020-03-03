@@ -3,7 +3,16 @@
 import program from "commander";
 import { parse, execute } from "@pipeliner-dev/core";
 
-program.option("-f, --file <filename>", "pipeliner file to execute");
-program.parse(process.argv);
+program
+  .command("parse <file>")
+  .alias("p")
+  .description("Performs a dry-run of the pipeliner file")
+  .action(file => {
+    execute(process.cwd(), parse(file));
+  });
 
-execute(process.cwd(), parse(program.file));
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
+} else {
+  program.parse(process.argv);
+}

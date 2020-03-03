@@ -13,7 +13,7 @@ export const execute = (workingDirectory: string, config: Config) => {
 
   if (!config.pipeline) throw new Error("The pipeline is undefined!");
 
-  register();
+  register({ compilerOptions: { esModuleInterop: true } });
 
   const required = require(`${workingDirectory}/${config.pipeline}`);
   const pipeline = required.default as Pipeline;
