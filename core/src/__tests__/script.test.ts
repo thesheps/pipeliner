@@ -1,11 +1,20 @@
-import { exec } from "child_process";
+import { spawnSync } from "child_process";
 import { existsSync } from "fs";
 import { when } from "jest-when";
 
+import { logger } from "../logger";
 import { script } from "../script";
 
-jest.mock("child_process");
 jest.mock("fs");
+
+jest.mock("../logger");
+
+jest.mock("child_process", () => ({
+  spawnSync: jest.fn().mockReturnValue({
+    stdout: "STDOUT",
+    error: "ERROR"
+  })
+}));
 
 when(existsSync as jest.Mock)
   .calledWith("build.sh")
@@ -32,7 +41,9 @@ describe("Script", () => {
     const testScript = script(scriptName, scriptName);
     testScript.func();
 
-    expect(exec).toHaveBeenCalledWith(scriptName);
+    expect(spawnSync).toHaveBeenCalledWith("sh", [scriptName]);
+    expect(logger.info).toHaveBeenCalledWith("build.sh - STDOUT");
+    expect(logger.error).toHaveBeenCalledWith("build.sh - ERROR");
   });
 
   it("checks for the presence of the script", () => {

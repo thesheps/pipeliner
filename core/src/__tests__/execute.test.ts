@@ -12,7 +12,7 @@ jest.mock("../stage");
 jest.mock("../pipeline", () => ({ pipeline: () => ({ execute: executeFn }) }));
 
 when(existsSync as jest.Mock)
-  .calledWith("../../examples")
+  .calledWith("../../examples/errorPipeline")
   .mockReturnValue(true);
 
 when(existsSync as jest.Mock)
@@ -51,7 +51,7 @@ describe("Execute", () => {
   });
 
   it("loads the specified pipeline and stages", () => {
-    execute("../../examples", { pipeline: "testPipeline.ts" });
+    execute("../../examples/errorPipeline", { pipeline: "errorPipeline.ts" });
 
     expect(executeFn).toHaveBeenCalled();
     expect(stage).toHaveBeenCalledWith("Stage 1", [expect.any(Step)]);

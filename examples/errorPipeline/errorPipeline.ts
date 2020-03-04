@@ -1,6 +1,6 @@
-import { pipeline } from "../core/src/pipeline";
-import { stage } from "../core/src/stage";
-import { step } from "../core/src/step";
+import { pipeline } from "../../core/src/pipeline";
+import { stage } from "../../core/src/stage";
+import { step } from "../../core/src/step";
 
 export default pipeline("My Test Pipeline", [
   stage("Stage 1", [

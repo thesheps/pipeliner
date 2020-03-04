@@ -1,6 +1,7 @@
-import { exec } from "child_process";
+import { spawnSync } from "child_process";
 import { existsSync } from "fs";
 
+import { logger } from "./logger";
 import { Step } from "./step";
 
 export class Script extends Step {
@@ -14,7 +15,12 @@ export class Script extends Step {
     if (!existsSync(script))
       throw new Error("The specified script does not exist!");
 
-    exec(script);
+    const command = spawnSync("sh", [script]);
+    logger.info(`${script} - ${command.stdout}`);
+
+    if (command.error) {
+      logger.error(`${script} - ${command.error}`);
+    }
   }
 }
 
