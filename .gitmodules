@@ -10,3 +10,6 @@
 [submodule "ui"]
 	path = ui
 	url = https://github.com/thesheps/pipeliner-ui
+[submodule "api"]
+	path = api
+	url = git@github.com:thesheps/pipeliner-api.git
