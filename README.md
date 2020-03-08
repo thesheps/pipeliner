@@ -4,5 +4,5 @@
 
 ## Getting Started
 
-- npm -g lerna
+- npm i -g lerna
 - lerna bootstrap
