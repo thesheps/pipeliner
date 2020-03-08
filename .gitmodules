@@ -7,3 +7,6 @@
 [submodule "core"]
 	path = core
 	url = https://github.com/thesheps/pipeliner-core
+[submodule "ui"]
+	path = ui
+	url = https://github.com/thesheps/pipeliner-ui

@@ -6,6 +6,7 @@
     "lerna": "^3.20.2"
   },
   "scripts": {
-    "test": "lerna run test --stream"
+    "test": "lerna run test --stream",
+    "build": "lerna run build"
   }
 }

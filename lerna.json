@@ -1,9 +1,5 @@
 {
-  "packages": [
-    "cli",
-    "core",
-    "examples"
-  ],
+  "packages": ["cli", "core", "examples", "ui"],
   "npmClient": "yarn",
   "version": "1.0.0-alpha.0"
 }
