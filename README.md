@@ -1,8 +1,3 @@
-# `@pipeliner`
+## Welcome To Pipeliner!
 
-> `pipeliner` - a Typescript CI/CD pipeline platform
-
-## Getting Started
-
-- npm i -g lerna
-- lerna bootstrap
+This application is intended as a super-lightweight CI/CD platform with an emphasis on testability.
