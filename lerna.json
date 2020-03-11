@@ -1,5 +1,11 @@
 {
-  "packages": ["api", "cli", "core", "examples", "ui"],
+  "packages": [
+    "api",
+    "cli",
+    "core",
+    "examples",
+    "ui"
+  ],
   "npmClient": "npm",
-  "version": "1.2.7-alpha.0"
+  "version": "1.2.8-alpha.0"
 }
