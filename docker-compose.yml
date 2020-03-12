@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  api:
+    build: "./api"
+    environment:
+      - PIPELINER_API_PORT=3333
+  ui:
+    build: "./ui"
+    environment:
+      - PIPELINER_UI_PORT=2222
