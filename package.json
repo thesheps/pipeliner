@@ -8,5 +8,6 @@
   "scripts": {
     "test": "lerna run test --stream",
     "build": "lerna run build"
-  }
+  },
+  "dependencies": {}
 }
