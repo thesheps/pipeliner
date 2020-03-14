@@ -1,11 +1,5 @@
 {
-  "packages": [
-    "api",
-    "cli",
-    "core",
-    "examples",
-    "ui"
-  ],
+  "packages": ["api", "cli", "core", "examples", "ui", "db"],
   "npmClient": "npm",
   "version": "1.2.14-alpha.0"
 }
