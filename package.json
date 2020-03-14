@@ -7,7 +7,9 @@
   },
   "scripts": {
     "test": "lerna run test --stream",
-    "build": "lerna run build"
+    "build": "lerna run build",
+    "start": "lerna run start",
+    "start:dev": "lerna run start:dev"
   },
   "dependencies": {}
 }
