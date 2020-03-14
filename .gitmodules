@@ -13,3 +13,6 @@
 [submodule "api"]
 	path = api
 	url = https://github.com/thesheps/pipeliner-api.git
+[submodule "db"]
+	path = db
+	url = https://github.com/thesheps/pipeliner-db.git
