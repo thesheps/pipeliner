@@ -3,6 +3,11 @@ version: "3"
 services:
   db:
     build: "./db"
+    environment:
+      - POSTGRES_USER=pipeliner
+      - POSTGRES_PASSWORD=pipeliner
+    ports:
+      - "5432:5432"
 
   api:
     build: "./api"
