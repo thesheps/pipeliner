@@ -1,3 +1,4 @@
 #!/bin/bash
 docker-compose up -d
-lerna run migrate
+lerna bootstrap
+lerna run --scope @pipeliner/db migrate
