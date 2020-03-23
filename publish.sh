@@ -1,5 +1,4 @@
 #!/bin/bash
-lerna publish
 git submodule foreach git add --all 
 git submodule foreach git commit -m 'feat(bump)'
 git add .
