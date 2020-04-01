@@ -3,9 +3,11 @@
   "private": true,
   "npmClient": "npm",
   "devDependencies": {
-    "lerna": "^3.20.2"
+    "lerna": "^3.20.2",
+    "rimraf": "^3.0.2"
   },
   "scripts": {
+    "clean": "rimraf **/dist",
     "test": "lerna run test --stream",
     "build": "lerna run build",
     "start": "lerna run start",
