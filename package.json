@@ -3,15 +3,16 @@
   "private": true,
   "npmClient": "npm",
   "devDependencies": {
-    "lerna": "^3.20.2",
-    "rimraf": "^3.0.2"
+    "lerna": "^3.20.2"
   },
   "scripts": {
-    "clean": "rimraf **/dist",
+    "clean": "rimraf ./dist tsconfig.build.tsbuildinfo",
     "test": "lerna run test --stream",
     "build": "lerna run build",
     "start": "lerna run start",
     "start:dev": "lerna run start:dev"
   },
-  "dependencies": {}
+  "dependencies": {
+    "rimraf": "^3.0.2"
+  }
 }
