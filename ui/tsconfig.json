@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "lib": ["es6", "DOM"],
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "noLib": false,
+    "outDir": "dist",
+    "removeComments": true,
+    "rootDir": "src",
+    "sourceMap": true,
+    "target": "es6"
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "bin",
+    "webpack.config.js",
+    "jest.config.js"
+  ]
+}

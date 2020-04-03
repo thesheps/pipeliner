@@ -1,0 +1,11 @@
+services:
+  db-integration:
+    environment:
+      POSTGRES_DB: pipeliner
+      POSTGRES_PASSWORD: pipeliner
+      POSTGRES_USER: pipeliner
+    image: postgres:alpine
+    ports:
+    - published: 5433
+      target: 5432
+version: '3.7'

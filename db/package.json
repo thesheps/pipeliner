@@ -1,0 +1,40 @@
+{
+  "name": "@pipeliner/db",
+  "version": "1.5.0-alpha.0",
+  "description": "pipeliner - db",
+  "homepage": "http://thesheps.github.io/pipeliner",
+  "license": "ISC",
+  "author": "Chris Shepherd <me@thesheps.dev>",
+  "main": "dist/index",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf ./dist tsconfig.build.tsbuildinfo",
+    "build": "npm run clean && npm run compile",
+    "compile": "tsc --build tsconfig.build.json",
+    "migrate": "env-cmd sequelize db:migrate",
+    "test": "env-cmd ts-node ./src/dockest"
+  },
+  "dependencies": {
+    "@pipeliner/core": "^1.5.0-alpha.0",
+    "bcrypt": "^4.0.1",
+    "env-cmd": "^10.1.0",
+    "jest": "^25.2.4",
+    "pg": "^7.18.2",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^5.21.5",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.8",
+    "dockest": "^2.0.1",
+    "dotenv": "^8.2.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^25.3.0",
+    "ts-node": "^8.8.1",
+    "typescript": "^3.7.5"
+  }
+}

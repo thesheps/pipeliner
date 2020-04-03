@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres:alpine
+    ports:
+      - published: $PIPELINER_DB_PORT
+        target: 5432
+    environment:
+      POSTGRES_DB: $PIPELINER_DB_DATABASE
+      POSTGRES_USER: $PIPELINER_DB_USERNAME
+      POSTGRES_PASSWORD: $PIPELINER_DB_PASSWORD
