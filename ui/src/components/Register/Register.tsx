@@ -18,9 +18,9 @@ export interface RegisterProps {
 export const Register = ({ registerUser }: RegisterProps) => {
   const [username, setUsername] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
+  const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
-  const [emailError, setEmailError] = useState(false);
 
   const validateEmailAddress = (email: string) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
