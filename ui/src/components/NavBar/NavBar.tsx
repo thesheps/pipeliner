@@ -14,10 +14,14 @@ export interface NavBarProps {
   registerUser: (username: string, email: string, password: string) => void;
 }
 
-const useStyles = makeStyles(theme => ({
+interface StateProps {
+  isSignedIn: boolean;
+}
+
+const useStyles = makeStyles((theme) => ({
   root: { flexGrow: 1 },
   menuButton: { marginRight: theme.spacing(2) },
-  title: { flexGrow: 1 }
+  title: { flexGrow: 1 },
 }));
 
 export const NavBar = ({ appName, isSignedIn, registerUser }: NavBarProps) => {
@@ -49,8 +53,8 @@ export const NavBar = ({ appName, isSignedIn, registerUser }: NavBarProps) => {
   );
 };
 
-const mapStateToProps = (state: UserState) => ({
-  isSignedIn: state.isSignedIn
+const mapStateToProps = (state: UserState): StateProps => ({
+  isSignedIn: state.isSignedIn,
 });
 
 export const NavBarContainer = connect(mapStateToProps, { registerUser })(

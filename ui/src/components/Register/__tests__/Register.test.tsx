@@ -3,7 +3,7 @@ import { fireEvent, render } from "@testing-library/react";
 import {
   toBeDisabled,
   toBeVisible,
-  toHaveStyle
+  toHaveStyle,
 } from "@testing-library/jest-dom/matchers";
 
 import { Register } from "../Register";
@@ -15,6 +15,12 @@ describe("Register", () => {
   const email = "joe.bloggs@invalid.com";
   const password = "my super awesome password";
 
+  it("renders correctly", () => {
+    const { container } = render(<Register registerUser={jest.fn()} />);
+
+    expect(container).toMatchSnapshot();
+  });
+
   it("validates username has been entered", () => {
     const { getByText, getByTestId } = render(
       <Register registerUser={jest.fn()} />
@@ -23,11 +29,11 @@ describe("Register", () => {
     fireEvent.click(getByText("Register"));
 
     fireEvent.change(getByTestId("email-input"), {
-      target: { value: email }
+      target: { value: email },
     });
 
     fireEvent.change(getByTestId("password-input"), {
-      target: { value: password }
+      target: { value: password },
     });
 
     expect(getByTestId("register-button")).toBeDisabled();
@@ -41,11 +47,11 @@ describe("Register", () => {
     fireEvent.click(getByText("Register"));
 
     fireEvent.change(getByTestId("username-input"), {
-      target: { value: email }
+      target: { value: email },
     });
 
     fireEvent.change(getByTestId("password-input"), {
-      target: { value: password }
+      target: { value: password },
     });
 
     expect(getByTestId("register-button")).toBeDisabled();
@@ -59,11 +65,11 @@ describe("Register", () => {
     fireEvent.click(getByText("Register"));
 
     fireEvent.change(getByTestId("email-input"), {
-      target: { value: email }
+      target: { value: email },
     });
 
     fireEvent.change(getByTestId("username-input"), {
-      target: { value: username }
+      target: { value: username },
     });
 
     expect(getByTestId("register-button")).toBeDisabled();
@@ -78,15 +84,15 @@ describe("Register", () => {
     fireEvent.click(getByText("Register"));
 
     fireEvent.change(getByTestId("username-input"), {
-      target: { value: username }
+      target: { value: username },
     });
 
     fireEvent.change(getByTestId("email-input"), {
-      target: { value: email }
+      target: { value: email },
     });
 
     fireEvent.change(getByTestId("password-input"), {
-      target: { value: password }
+      target: { value: password },
     });
 
     fireEvent.click(getByTestId("register-button"));

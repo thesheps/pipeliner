@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NavBar renders the specified APP_NAME 1`] = `
+exports[`NavBar renders correctly 1`] = `
 <h6
   class="MuiTypography-root makeStyles-title-3 MuiTypography-h6"
 >

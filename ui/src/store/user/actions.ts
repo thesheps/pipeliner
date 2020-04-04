@@ -2,20 +2,20 @@ import {
   UserActionTypes,
   SET_IS_REGISTERING,
   SET_AUTH_TOKEN,
-  SET_AUTH_FAILED
+  SET_AUTH_FAILED,
 } from "./types";
 
 export const setIsRegistering = (isRegistering: boolean): UserActionTypes => ({
   type: SET_IS_REGISTERING,
-  isRegistering
+  isRegistering,
 });
 
 export const setAuthToken = (authToken: string): UserActionTypes => ({
   type: SET_AUTH_TOKEN,
-  authToken
+  authToken,
 });
 
 export const setAuthFailed = (errorMessage: string): UserActionTypes => ({
   type: SET_AUTH_FAILED,
-  errorMessage
+  errorMessage,
 });

@@ -1,5 +1,5 @@
-import { setIsRegistering, setAuthToken, setAuthFailed } from "../actions";
 import { SET_IS_REGISTERING, SET_AUTH_TOKEN, SET_AUTH_FAILED } from "../types";
+import { setIsRegistering, setAuthToken, setAuthFailed } from "../actions";
 
 describe("SetIsRegisteringAction", () => {
   it("creates an action with isRegistering as true", () => {
@@ -7,7 +7,7 @@ describe("SetIsRegisteringAction", () => {
 
     expect(action).toEqual({
       type: SET_IS_REGISTERING,
-      isRegistering: true
+      isRegistering: true,
     });
   });
 
@@ -16,7 +16,7 @@ describe("SetIsRegisteringAction", () => {
 
     expect(action).toEqual({
       type: SET_IS_REGISTERING,
-      isRegistering: false
+      isRegistering: false,
     });
   });
 });
@@ -28,7 +28,7 @@ describe("Auth Tokens", () => {
 
     expect(action).toEqual({
       type: SET_AUTH_TOKEN,
-      authToken
+      authToken,
     });
   });
 
@@ -38,7 +38,7 @@ describe("Auth Tokens", () => {
 
     expect(action).toEqual({
       type: SET_AUTH_FAILED,
-      errorMessage: errorMessage
+      errorMessage: errorMessage,
     });
   });
 });

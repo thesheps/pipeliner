@@ -4,6 +4,14 @@ import { render } from "@testing-library/react";
 import { UserActions } from "../UserActions";
 
 describe("UserActions", () => {
+  it("renders correctly", () => {
+    const { container } = render(
+      <UserActions registerUser={jest.fn()} isSignedIn={false} />
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
   it("renders register button when not signed-in", () => {
     const { queryByTestId } = render(
       <UserActions registerUser={jest.fn()} isSignedIn={false} />

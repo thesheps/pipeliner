@@ -18,7 +18,7 @@ describe("NavBar", () => {
   const password = "my super awesome password";
   const mockStore = configureStore([thunk]);
 
-  it("renders the specified APP_NAME", () => {
+  it("renders correctly", () => {
     const { getByText } = render(
       <NavBar registerUser={() => {}} isSignedIn={false} appName={appName} />
     );
