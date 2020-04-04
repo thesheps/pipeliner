@@ -131,4 +131,15 @@ describe("Register", () => {
 
     expect(getByTestId("cancel-button")).not.toBeVisible();
   });
+
+  it("calls hide modal function upon clicking register", () => {
+    const { getByText, getByTestId } = render(
+      <Register registerUser={jest.fn()} />
+    );
+
+    fireEvent.click(getByText("Register"));
+    fireEvent.click(getByTestId("register-button"));
+
+    expect(getByTestId("register-button")).not.toBeVisible();
+  });
 });

@@ -96,7 +96,10 @@ export const Register = ({ registerUser }: RegisterProps) => {
 
           <Button
             data-testid="register-button"
-            onClick={() => registerUser(username, emailAddress, password)}
+            onClick={() => {
+              registerUser(username, emailAddress, password);
+              setOpen(false);
+            }}
             color="primary"
             disabled={!username || !emailAddress || !password || !!emailError}
           >
