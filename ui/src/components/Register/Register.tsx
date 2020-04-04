@@ -20,6 +20,20 @@ export const Register = ({ registerUser }: RegisterProps) => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+
+  const validateEmailAddress = (email: string) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const isValid = re.test(email.toLowerCase());
+
+    setEmailAddress(email);
+
+    if (!isValid) {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
+  };
 
   return (
     <>
@@ -50,11 +64,13 @@ export const Register = ({ registerUser }: RegisterProps) => {
 
           <TextField
             value={emailAddress}
-            onChange={(e) => setEmailAddress(e.target.value)}
+            onChange={(e) => validateEmailAddress(e.target.value)}
             inputProps={{ "data-testid": "emailAddress-input" }}
             margin="dense"
             label="Email"
             type="email"
+            error={!!emailError}
+            helperText="Please enter a valid email address"
             fullWidth
           />
 
@@ -82,7 +98,7 @@ export const Register = ({ registerUser }: RegisterProps) => {
             data-testid="register-button"
             onClick={() => registerUser(username, emailAddress, password)}
             color="primary"
-            disabled={!username || !emailAddress || !password}
+            disabled={!username || !emailAddress || !password || !!emailError}
           >
             Register
           </Button>
