@@ -1,16 +1,17 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: "./src/index.tsx",
 
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "[name].js"
+    filename: "[name].js",
   },
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    extensions: [".ts", ".tsx", ".js"],
   },
 
   module: {
@@ -21,21 +22,22 @@ module.exports = {
         use: {
           loader: "ts-loader",
           options: {
-            configFile: "tsconfig.json"
-          }
-        }
-      }
-    ]
+            configFile: "tsconfig.json",
+          },
+        },
+      },
+    ],
   },
 
   plugins: [
+    new Dotenv(),
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
-    })
+      template: "./src/index.html",
+    }),
   ],
 
   node: {
     fs: "empty",
-    net: "empty"
-  }
+    net: "empty",
+  },
 };
