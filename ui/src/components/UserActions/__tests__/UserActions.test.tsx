@@ -8,7 +8,7 @@ describe("UserActions", () => {
     const { container } = render(
       <UserActions registerUser={jest.fn()} isSignedIn={false} />
     );
-
+    
     expect(container).toMatchSnapshot();
   });
 

@@ -1,24 +1,39 @@
-import { showError, hideError } from "../actions";
-import { SHOW_ERROR, HIDE_ERROR } from "../types";
+import {
+  showError,
+  hideError,
+  showRegisterModal,
+  hideRegisterModal,
+} from "../actions";
+import {
+  SHOW_ERROR,
+  HIDE_ERROR,
+  SHOW_REGISTER_MODAL,
+  HIDE_REGISTER_MODAL,
+} from "../types";
 
 describe("UI actions", () => {
-  describe("ShowError", () => {
-    it("creates an action with the specified error message", () => {
-      const errorMessage = "Whoops!!";
-      const action = showError(errorMessage);
+  it("creates SHOW_ERROR action", () => {
+    const errorMessage = "Whoops!!";
+    const action = showError(errorMessage);
 
-      expect(action).toEqual({
-        type: SHOW_ERROR,
-        errorMessage,
-      });
+    expect(action).toEqual({
+      type: SHOW_ERROR,
+      errorMessage,
     });
+  });
 
-    it("creates an action with the correct type", () => {
-      const action = hideError();
+  it("creates HIDE_ERROR action", () => {
+    const action = hideError();
+    expect(action).toEqual({ type: HIDE_ERROR });
+  });
 
-      expect(action).toEqual({
-        type: HIDE_ERROR,
-      });
-    });
+  it("creates SHOW_REGISTER_MODAL action", () => {
+    const action = showRegisterModal();
+    expect(action).toEqual({ type: SHOW_REGISTER_MODAL });
+  });
+
+  it("creates HIDE_REGISTER_MODAL action", () => {
+    const action = hideRegisterModal();
+    expect(action).toEqual({ type: HIDE_REGISTER_MODAL });
   });
 });

@@ -54,6 +54,7 @@ describe("Error", () => {
     const initialUIState: UIState = {
       errorMessage: "Whoops!",
       showError: true,
+      showRegisterModal: false,
     };
 
     const initialPipelinerState = {

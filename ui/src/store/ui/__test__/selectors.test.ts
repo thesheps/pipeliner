@@ -1,10 +1,12 @@
 import { PipelinerState } from "../../types";
 import { uiSelector } from "../selectors";
+import { UIState } from "../types";
 
 describe("UI Selector", () => {
-  const ui = {
+  const ui: UIState = {
     errorMessage: "Error Message",
     showError: true,
+    showRegisterModal: false,
   };
 
   const state: PipelinerState = {

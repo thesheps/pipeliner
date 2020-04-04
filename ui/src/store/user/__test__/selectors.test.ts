@@ -12,6 +12,7 @@ describe("User Selector", () => {
     ui: {
       errorMessage: "Error Message",
       showError: true,
+      showRegisterModal: false,
     },
     user,
   };
