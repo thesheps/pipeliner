@@ -1,6 +1,6 @@
 {
   "name": "@pipeliner/api",
-  "version": "1.5.0-alpha.0",
+  "version": "1.6.0-alpha.0",
   "description": "pipeliner - api",
   "homepage": "http://thesheps.github.io/pipeliner",
   "license": "ISC",
@@ -23,8 +23,8 @@
     "test": "env-cmd ts-node ./src/dockest"
   },
   "dependencies": {
-    "@pipeliner/core": "^1.5.0-alpha.0",
-    "@pipeliner/db": "^1.5.0-alpha.0",
+    "@pipeliner/core": "^1.6.0-alpha.0",
+    "@pipeliner/db": "^1.6.0-alpha.0",
     "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
