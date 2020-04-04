@@ -6,4 +6,4 @@ COPY . .
 RUN npm install ts-node -g
 RUN npm install
 EXPOSE $PIPELINER_UI_PORT
-CMD [ "ts-node", "./src/server.ts" ]
+CMD [ "npm", "run", "start" ]

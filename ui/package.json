@@ -17,6 +17,7 @@
   "scripts": {
     "clean": "rimraf ./dist tsconfig.build.tsbuildinfo",
     "compile": "tsc --build tsconfig.build.json && webpack",
+    "prestart": "npm run compile",
     "start": "env-cmd ts-node ./src/server.ts",
     "start:dev": "env-cmd webpack-dev-server --mode development --open --hot",
     "test": "jest",
