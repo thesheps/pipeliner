@@ -13,7 +13,7 @@ import { userSelector } from "../../store/user/selectors";
 export interface NavBarProps {
   appName: string;
   isSignedIn: boolean;
-  registerUser: (username: string, email: string, password: string) => void;
+  registerUser: (username: string, emailAddress: string, password: string) => void;
 }
 
 interface StateProps {

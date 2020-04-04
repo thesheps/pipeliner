@@ -7,9 +7,9 @@
   },
   "scripts": {
     "clean": "rimraf ./dist tsconfig.build.tsbuildinfo",
-    "test": "lerna run test --stream",
-    "build": "lerna run build",
-    "start": "lerna run start",
+    "test": "lerna run test --stream --parallel",
+    "build": "lerna run build --stream --parallel",
+    "start": " lerna run start --stream --parallel",
     "start:dev": "lerna run start:dev"
   },
   "dependencies": {

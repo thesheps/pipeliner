@@ -7,7 +7,7 @@ import { showError } from "../ui/actions";
 
 export const registerUser = (
   username: string,
-  email: string,
+  emailAddress: string,
   password: string
 ): ThunkAction<Promise<void>, {}, {}, AnyAction> => async (
   dispatch: ThunkDispatch<{}, {}, AnyAction>
@@ -16,7 +16,12 @@ export const registerUser = (
   dispatch(setIsRegistering(true));
 
   try {
-    const token = await userService.registerUser(username, email, password);
+    const token = await userService.registerUser(
+      username,
+      emailAddress,
+      password
+    );
+
     dispatch(setAuthToken(token));
   } catch (error) {
     dispatch(showError(error.message));

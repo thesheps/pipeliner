@@ -4,7 +4,7 @@ import { Register } from "../Register";
 
 export interface UserActionsProps {
   isSignedIn: boolean;
-  registerUser: (username: string, email: string, password: string) => void;
+  registerUser: (username: string, emailAddress: string, password: string) => void;
 }
 
 export const UserActions = ({ isSignedIn, registerUser }: UserActionsProps) => (

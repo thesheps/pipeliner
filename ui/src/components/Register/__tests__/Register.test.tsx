@@ -12,7 +12,7 @@ expect.extend({ toBeDisabled, toBeVisible, toHaveStyle });
 
 describe("Register", () => {
   const username = "joe.bloggs";
-  const email = "joe.bloggs@invalid.com";
+  const emailAddress = "joe.bloggs@invalid.com";
   const password = "my super awesome password";
 
   it("renders correctly", () => {
@@ -28,8 +28,8 @@ describe("Register", () => {
 
     fireEvent.click(getByText("Register"));
 
-    fireEvent.change(getByTestId("email-input"), {
-      target: { value: email },
+    fireEvent.change(getByTestId("emailAddress-input"), {
+      target: { value: emailAddress },
     });
 
     fireEvent.change(getByTestId("password-input"), {
@@ -39,7 +39,7 @@ describe("Register", () => {
     expect(getByTestId("register-button")).toBeDisabled();
   });
 
-  it("validates email has been entered", () => {
+  it("validates emailAddress has been entered", () => {
     const { getByText, getByTestId } = render(
       <Register registerUser={jest.fn()} />
     );
@@ -47,7 +47,7 @@ describe("Register", () => {
     fireEvent.click(getByText("Register"));
 
     fireEvent.change(getByTestId("username-input"), {
-      target: { value: email },
+      target: { value: emailAddress },
     });
 
     fireEvent.change(getByTestId("password-input"), {
@@ -64,8 +64,8 @@ describe("Register", () => {
 
     fireEvent.click(getByText("Register"));
 
-    fireEvent.change(getByTestId("email-input"), {
-      target: { value: email },
+    fireEvent.change(getByTestId("emailAddress-input"), {
+      target: { value: emailAddress },
     });
 
     fireEvent.change(getByTestId("username-input"), {
@@ -87,8 +87,8 @@ describe("Register", () => {
       target: { value: username },
     });
 
-    fireEvent.change(getByTestId("email-input"), {
-      target: { value: email },
+    fireEvent.change(getByTestId("emailAddress-input"), {
+      target: { value: emailAddress },
     });
 
     fireEvent.change(getByTestId("password-input"), {
@@ -96,7 +96,7 @@ describe("Register", () => {
     });
 
     fireEvent.click(getByTestId("register-button"));
-    expect(registerUser).toHaveBeenCalledWith(username, email, password);
+    expect(registerUser).toHaveBeenCalledWith(username, emailAddress, password);
   });
 
   it("calls hide modal function upon clicking cancel", () => {

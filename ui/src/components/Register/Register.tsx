@@ -8,12 +8,16 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
 
 export interface RegisterProps {
-  registerUser: (username: string, email: string, password: string) => void;
+  registerUser: (
+    username: string,
+    emailAddress: string,
+    password: string
+  ) => void;
 }
 
 export const Register = ({ registerUser }: RegisterProps) => {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -35,7 +39,7 @@ export const Register = ({ registerUser }: RegisterProps) => {
 
           <TextField
             value={username}
-            onChange={e => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
             inputProps={{ "data-testid": "username-input" }}
             autoFocus
             margin="dense"
@@ -45,9 +49,9 @@ export const Register = ({ registerUser }: RegisterProps) => {
           />
 
           <TextField
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            inputProps={{ "data-testid": "email-input" }}
+            value={emailAddress}
+            onChange={(e) => setEmailAddress(e.target.value)}
+            inputProps={{ "data-testid": "emailAddress-input" }}
             margin="dense"
             label="Email"
             type="email"
@@ -56,7 +60,7 @@ export const Register = ({ registerUser }: RegisterProps) => {
 
           <TextField
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             inputProps={{ "data-testid": "password-input" }}
             margin="dense"
             label="Password"
@@ -76,9 +80,9 @@ export const Register = ({ registerUser }: RegisterProps) => {
 
           <Button
             data-testid="register-button"
-            onClick={() => registerUser(username, email, password)}
+            onClick={() => registerUser(username, emailAddress, password)}
             color="primary"
-            disabled={!username || !email || !password}
+            disabled={!username || !emailAddress || !password}
           >
             Register
           </Button>

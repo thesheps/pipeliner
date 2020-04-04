@@ -14,7 +14,9 @@
     "build": "npm run clean && npm run compile",
     "compile": "tsc --build tsconfig.build.json",
     "migrate": "env-cmd sequelize db:migrate",
-    "test": "env-cmd ts-node ./src/dockest"
+    "test": "env-cmd ts-node ./src/dockest",
+    "start": "./start.sh",
+    "poststart": "npm run migrate"
   },
   "dependencies": {
     "@pipeliner/core": "^1.6.0-alpha.0",

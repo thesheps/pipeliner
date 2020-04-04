@@ -18,7 +18,7 @@ jest.mock("../../../services");
 describe("NavBar", () => {
   const appName = "My Lovely Test";
   const username = "joe.bloggs";
-  const email = "joe.bloggs@invalid.com";
+  const emailAddress = "joe.bloggs@invalid.com";
   const password = "my super awesome password";
   const mockStore = configureStore([thunk]);
 
@@ -76,8 +76,8 @@ describe("NavBar", () => {
       target: { value: username },
     });
 
-    fireEvent.change(getByTestId("email-input"), {
-      target: { value: email },
+    fireEvent.change(getByTestId("emailAddress-input"), {
+      target: { value: emailAddress },
     });
 
     fireEvent.change(getByTestId("password-input"), {

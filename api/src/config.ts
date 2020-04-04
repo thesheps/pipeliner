@@ -4,8 +4,8 @@ export = {
     username: "pipeliner",
     password: "pipeliner",
     host: "localhost",
-    port: 5433,
+    port: 5432,
     dialect: "postgres",
-    logging: false
-  }
+    logging: false,
+  },
 };

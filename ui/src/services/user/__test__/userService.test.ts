@@ -7,7 +7,7 @@ jest.mock("axios");
 describe("UserService", () => {
   const baseUrl = "https://pipeliner.invalid";
   const username = "joe.bloggs";
-  const email = "adam@joe.com";
+  const emailAddress = "adam@joe.com";
   const password = "password";
 
   describe("registration", () => {
@@ -17,23 +17,24 @@ describe("UserService", () => {
 
     it("posts the provided details using axios", () => {
       const userService = new UserService(baseUrl);
+      const registerUrl = `${baseUrl}/users/register`;
 
-      userService.registerUser(username, email, password);
+      userService.registerUser(username, emailAddress, password);
 
-      expect(axios.post).toHaveBeenCalledWith(baseUrl, {
+      expect(axios.post).toHaveBeenCalledWith(registerUrl, {
         username,
-        email,
-        password
+        emailAddress,
+        password,
       });
     });
 
     it("returns whatever data is specified by the response", async () => {
       const userService = new UserService(baseUrl);
       (axios.post as jest.Mock).mockResolvedValueOnce({
-        data: "beans-on-toast"
+        data: "beans-on-toast",
       });
 
-      const token = await userService.registerUser(username, email, password);
+      const token = await userService.registerUser(username, emailAddress, password);
       expect(token).toBe("beans-on-toast");
     });
 
@@ -43,7 +44,7 @@ describe("UserService", () => {
       (axios.post as jest.Mock).mockRejectedValueOnce(new Error(expectedError));
 
       expect(
-        userService.registerUser(username, email, password)
+        userService.registerUser(username, emailAddress, password)
       ).rejects.toThrow(new Error(expectedError));
     });
   });

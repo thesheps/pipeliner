@@ -4,4 +4,4 @@ ENV POSTGRES_USER $PIPELINER_DB_USERNAME
 ENV POSTGRES_PASSWORD $PIPELINER_DB_PASSWORD
 ENV POSTGRES_DB $PIPELINER_DB_DATABASE
 
-COPY ./scripts/install-pgcrypto.sh /docker-entrypoint-initdb.d/
+COPY ./src/scripts/install-pgcrypto.sh /docker-entrypoint-initdb.d/
