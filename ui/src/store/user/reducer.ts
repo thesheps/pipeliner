@@ -1,3 +1,4 @@
+import { initialUserState } from "./initialState";
 import {
   UserState,
   UserActionTypes,
@@ -5,7 +6,6 @@ import {
   SET_AUTH_FAILED,
   SET_AUTH_TOKEN
 } from "./types";
-import { initialUserState } from "./initialState";
 
 export const userReducer = (
   state = initialUserState,
