@@ -1,14 +1,14 @@
-import { pipelinerReducer } from "../reducer";
+import { uiReducer } from "../reducer";
 import { showError } from "../actions";
-import { initialState } from "../../initialState";
+import { initialUIState } from "../initialState";
 
 describe("Reducers", () => {
   it("returns a state containing the the specified error message", () => {
     const errorMessage = "Something Broke!!!";
-    const newState = pipelinerReducer(initialState, showError(errorMessage));
+    const newState = uiReducer(initialUIState, showError(errorMessage));
 
     expect(newState).toEqual({
-      ...initialState,
+      ...initialUIState,
       errorMessage,
       showError: true,
     });

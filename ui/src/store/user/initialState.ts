@@ -4,5 +4,4 @@ export const initialUserState: UserState = {
   authToken: "",
   isRegistering: false,
   isSignedIn: false,
-  registerUserError: ""
 };

@@ -1,6 +1,7 @@
 import { UserService } from "../../../services";
 import { registerUser } from "../thunks";
-import { setIsRegistering, setAuthToken, setAuthFailed } from "../actions";
+import { setIsRegistering, setAuthToken } from "../actions";
+import { showError } from "../../ui/actions";
 
 jest.mock("../../../services");
 
@@ -26,7 +27,7 @@ describe("User thunks", () => {
     expect(dispatch).toHaveBeenNthCalledWith(3, setIsRegistering(false));
   });
 
-  it("dispatches setIsRegistering and setAuthFailed on sad registration", async () => {
+  it("dispatches setIsRegistering and showError on sad registration", async () => {
     const sadMessage = "It went bad :(";
     const dispatch = jest.fn();
     UserService.prototype.registerUser = (): Promise<string> =>
@@ -39,7 +40,7 @@ describe("User thunks", () => {
     );
 
     expect(dispatch).toHaveBeenNthCalledWith(1, setIsRegistering(true));
-    expect(dispatch).toHaveBeenNthCalledWith(2, setAuthFailed(sadMessage));
+    expect(dispatch).toHaveBeenNthCalledWith(2, showError(sadMessage));
     expect(dispatch).toHaveBeenNthCalledWith(3, setIsRegistering(false));
   });
 });

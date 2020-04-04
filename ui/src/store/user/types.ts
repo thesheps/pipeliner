@@ -26,5 +26,4 @@ export interface UserState {
   isSignedIn: boolean;
   isRegistering: boolean;
   authToken: string;
-  registerUserError: string;
 }

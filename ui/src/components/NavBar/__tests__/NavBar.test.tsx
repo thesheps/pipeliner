@@ -4,7 +4,11 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { fireEvent, render } from "@testing-library/react";
 
-import { SET_IS_REGISTERING, SET_AUTH_TOKEN } from "../../../store/user/types";
+import {
+  SET_IS_REGISTERING,
+  SET_AUTH_TOKEN,
+  UserState,
+} from "../../../store/user/types";
 import { NavBar, NavBarContainer } from "../NavBar";
 import { initialState } from "../../../store/initialState";
 import { UserService } from "../../../services";
@@ -35,7 +39,14 @@ describe("NavBar", () => {
   });
 
   it("maps state properties correctly", () => {
-    const store = mockStore({ ...initialState, isSignedIn: true });
+    const userState: UserState = {
+      isSignedIn: true,
+      isRegistering: false,
+      authToken: "",
+    };
+
+    const pipelinerState = { ...initialState, user: userState };
+    const store = mockStore({ ...pipelinerState, isSignedIn: true });
 
     const { queryByTestId } = render(
       <Provider store={store}>
@@ -62,15 +73,15 @@ describe("NavBar", () => {
     fireEvent.click(getByText("Register"));
 
     fireEvent.change(getByTestId("username-input"), {
-      target: { value: username }
+      target: { value: username },
     });
 
     fireEvent.change(getByTestId("email-input"), {
-      target: { value: email }
+      target: { value: email },
     });
 
     fireEvent.change(getByTestId("password-input"), {
-      target: { value: password }
+      target: { value: password },
     });
 
     fireEvent.click(getByTestId("register-button"));
@@ -80,7 +91,7 @@ describe("NavBar", () => {
     await expect(actions).toEqual([
       { isRegistering: true, type: SET_IS_REGISTERING },
       { authToken: "authToken", type: SET_AUTH_TOKEN },
-      { isRegistering: false, type: SET_IS_REGISTERING }
+      { isRegistering: false, type: SET_IS_REGISTERING },
     ]);
   });
 });

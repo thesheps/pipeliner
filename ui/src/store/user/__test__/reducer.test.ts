@@ -1,13 +1,12 @@
 import { UserState } from "../types";
 import { userReducer } from "../reducer";
-import { setAuthToken, setIsRegistering, setAuthFailed } from "../actions";
+import { setAuthToken, setIsRegistering } from "../actions";
 
 describe("Reducers", () => {
   const initialState: UserState = {
     authToken: "",
     isSignedIn: false,
     isRegistering: false,
-    registerUserError: ""
   };
 
   it("returns a state containing the updated authToken", () => {
@@ -16,7 +15,7 @@ describe("Reducers", () => {
 
     expect(newState).toEqual({
       ...initialState,
-      authToken
+      authToken,
     });
   });
 
@@ -26,20 +25,7 @@ describe("Reducers", () => {
 
     expect(newState).toEqual({
       ...initialState,
-      isRegistering
-    });
-  });
-
-  it("returns a state containing the updated registerUserError", () => {
-    const registerUserError = "my lovely horse";
-    const newState = userReducer(
-      initialState,
-      setAuthFailed(registerUserError)
-    );
-
-    expect(newState).toEqual({
-      ...initialState,
-      registerUserError
+      isRegistering,
     });
   });
 });

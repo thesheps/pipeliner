@@ -7,6 +7,8 @@ import { AppBar, Toolbar, IconButton, Typography } from "@material-ui/core";
 import { UserActions } from "../UserActions";
 import { UserState } from "../../store/user/types";
 import { registerUser } from "../../store/user/thunks";
+import { PipelinerState } from "../../store/types";
+import { userSelector } from "../../store/user/selectors";
 
 export interface NavBarProps {
   appName: string;
@@ -53,9 +55,13 @@ export const NavBar = ({ appName, isSignedIn, registerUser }: NavBarProps) => {
   );
 };
 
-const mapStateToProps = (state: UserState): StateProps => ({
-  isSignedIn: state.isSignedIn,
-});
+const mapStateToProps = (state: PipelinerState): StateProps => {
+  const userState = userSelector(state);
+
+  return {
+    isSignedIn: userState.isSignedIn,
+  };
+};
 
 export const NavBarContainer = connect(mapStateToProps, { registerUser })(
   NavBar

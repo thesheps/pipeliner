@@ -10,9 +10,9 @@ export interface HideErrorAction {
   type: typeof HIDE_ERROR;
 }
 
-export type PipelinerActionTypes = ShowErrorAction | HideErrorAction;
+export type UIActionTypes = ShowErrorAction | HideErrorAction;
 
-export interface PipelinerState {
+export interface UIState {
   showError: boolean;
   errorMessage: string;
 }

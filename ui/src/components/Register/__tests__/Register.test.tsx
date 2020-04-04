@@ -75,7 +75,7 @@ describe("Register", () => {
     expect(getByTestId("register-button")).toBeDisabled();
   });
 
-  it("calls onRegister function upon clicking register", () => {
+  it("calls registerUser function upon clicking register", () => {
     const registerUser = jest.fn();
     const { getByText, getByTestId } = render(
       <Register registerUser={registerUser} />

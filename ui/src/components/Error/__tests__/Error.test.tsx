@@ -2,15 +2,16 @@ import React from "react";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
 import { Error, ErrorProps, ErrorContainer } from "../Error";
-import { PipelinerState } from "../../../store/pipeliner/types";
+import { UIState } from "../../../store/ui/types";
+import { initialState } from "../../../store/initialState";
 
 describe("Error", () => {
   const errorProps: ErrorProps = {
     errorMessage: "Something Bad Happened!",
-    handleErrorClose: jest.fn(),
+    hideError: jest.fn(),
     showError: true,
   };
 
@@ -40,14 +41,28 @@ describe("Error", () => {
     expect(getByText(errorProps.errorMessage)).toBeTruthy();
   });
 
+  it("calls hideError function upon closing Snackbar", () => {
+    const hideError = jest.fn();
+    const props = { ...errorProps, hideError };
+    const { getByLabelText } = render(<Error {...props} />);
+
+    fireEvent.click(getByLabelText("Close"));
+    expect(hideError).toHaveBeenCalled();
+  });
+
   it("maps state properties correctly", () => {
-    const initialState: PipelinerState = {
+    const initialUIState: UIState = {
       errorMessage: "Whoops!",
       showError: true,
     };
 
+    const initialPipelinerState = {
+      ...initialState,
+      ui: initialUIState,
+    };
+
     const mockStore = configureStore([thunk]);
-    const store = mockStore({ ...initialState, isSignedIn: true });
+    const store = mockStore({ ...initialPipelinerState, isSignedIn: true });
 
     const { getByText } = render(
       <Provider store={store}>
@@ -55,6 +70,6 @@ describe("Error", () => {
       </Provider>
     );
 
-    expect(getByText(initialState.errorMessage)).toBeTruthy();
+    expect(getByText(initialUIState.errorMessage)).toBeTruthy();
   });
 });
