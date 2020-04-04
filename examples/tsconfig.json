@@ -6,7 +6,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "jsx": "react",
     "lib": ["es6"],
     "module": "commonjs",
     "noImplicitAny": false,
