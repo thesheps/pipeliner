@@ -47,11 +47,33 @@ describe("Register", () => {
     fireEvent.click(getByText("Register"));
 
     fireEvent.change(getByTestId("username-input"), {
-      target: { value: emailAddress },
+      target: { value: username },
     });
 
     fireEvent.change(getByTestId("password-input"), {
       target: { value: password },
+    });
+
+    expect(getByTestId("register-button")).toBeDisabled();
+  });
+
+  it("validates emailAddress is in the correct format", () => {
+    const { getByText, getByTestId } = render(
+      <Register registerUser={jest.fn()} />
+    );
+
+    fireEvent.click(getByText("Register"));
+
+    fireEvent.change(getByTestId("username-input"), {
+      target: { value: username },
+    });
+
+    fireEvent.change(getByTestId("password-input"), {
+      target: { value: password },
+    });
+
+    fireEvent.change(getByTestId("emailAddress-input"), {
+      target: { value: "emailAddress" },
     });
 
     expect(getByTestId("register-button")).toBeDisabled();
