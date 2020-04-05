@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn renders correctly 1`] = `
+<div
+  aria-hidden="true"
+>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+    data-testid="signIn-dialog-button"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      SignIn
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</div>
+`;

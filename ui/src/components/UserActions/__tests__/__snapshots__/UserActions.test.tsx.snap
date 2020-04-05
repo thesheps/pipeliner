@@ -4,6 +4,21 @@ exports[`UserActions renders correctly 1`] = `
 <div>
   <button
     class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
+    data-testid="signIn-dialog-button"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      SignIn
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
     data-testid="register-dialog-button"
     tabindex="0"
     type="button"

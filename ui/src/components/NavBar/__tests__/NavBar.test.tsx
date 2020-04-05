@@ -73,7 +73,7 @@ describe("NavBar", () => {
     const mockStore = configureStore([thunk]);
     const store = mockStore({
       ...initialState,
-      ui: { showRegisterModal: true },
+      ui: { showRegisterModal: true, showSignInModal: false },
     });
 
     const { getByTestId } = render(

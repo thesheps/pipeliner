@@ -40,4 +40,24 @@ describe("UserActions", () => {
 
     expect(queryByTestId("register-dialog-button")).toBeNull();
   });
+
+  it("renders signIn button when not signed-in", () => {
+    const { queryByTestId } = render(
+      <Provider store={store}>
+        <UserActions isSignedIn={false} />
+      </Provider>
+    );
+
+    expect(queryByTestId("signIn-dialog-button")).toBeTruthy();
+  });
+
+  it("does not render signIn button when signed-in", () => {
+    const { queryByTestId } = render(
+      <Provider store={store}>
+        <UserActions isSignedIn={true} />
+      </Provider>
+    );
+
+    expect(queryByTestId("signIn-dialog-button")).toBeNull();
+  });
 });
