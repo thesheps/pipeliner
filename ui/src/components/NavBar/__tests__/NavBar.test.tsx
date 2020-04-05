@@ -9,10 +9,10 @@ import {
   SET_AUTH_TOKEN,
   UserState,
 } from "../../../store/user/types";
+import { SET_SHOW_REGISTER_MODAL } from "../../../store/ui/types";
+import { UserService } from "../../../services";
 import { NavBar, NavBarContainer } from "../NavBar";
 import { initialState } from "../../../store/initialState";
-import { UserService } from "../../../services";
-import { SET_SHOW_REGISTER_MODAL } from "../../../store/ui/types";
 
 jest.mock("../../../services");
 
@@ -24,16 +24,24 @@ describe("NavBar", () => {
   const mockStore = configureStore([thunk]);
 
   it("renders correctly", () => {
+    const store = mockStore(initialState);
+
     const { getByText } = render(
-      <NavBar registerUser={() => {}} isSignedIn={false} appName={appName} />
+      <Provider store={store}>
+        <NavBar isSignedIn={false} appName={appName} />
+      </Provider>
     );
 
     expect(getByText(appName)).toMatchSnapshot();
   });
 
   it("renders UserActions", () => {
+    const store = mockStore(initialState);
+
     const { getByText } = render(
-      <NavBar registerUser={() => {}} isSignedIn={false} appName={appName} />
+      <Provider store={store}>
+        <NavBar isSignedIn={false} appName={appName} />
+      </Provider>
     );
 
     expect(getByText("Register")).toBeTruthy();
@@ -63,15 +71,16 @@ describe("NavBar", () => {
       new Promise((res: Function) => res("authToken"));
 
     const mockStore = configureStore([thunk]);
-    const store = mockStore(initialState);
+    const store = mockStore({
+      ...initialState,
+      ui: { showRegisterModal: true },
+    });
 
-    const { getByText, getByTestId } = render(
+    const { getByTestId } = render(
       <Provider store={store}>
         <NavBarContainer />
       </Provider>
     );
-
-    fireEvent.click(getByText("Register"));
 
     fireEvent.change(getByTestId("username-input"), {
       target: { value: username },

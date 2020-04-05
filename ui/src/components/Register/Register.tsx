@@ -6,8 +6,16 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
+import { connect } from "react-redux";
+
+import { PipelinerState } from "../../store/types";
+import { uiSelector } from "../../store/ui/selectors";
+import { registerUser } from "../../store/user/thunks";
+import { setShowRegisterModal } from "../../store/ui/actions";
 
 export interface RegisterProps {
+  showRegisterModal: boolean;
+  setShowRegisterModal: (show: boolean) => void;
   registerUser: (
     username: string,
     emailAddress: string,
@@ -15,12 +23,19 @@ export interface RegisterProps {
   ) => void;
 }
 
-export const Register = ({ registerUser }: RegisterProps) => {
+interface StateProps {
+  showRegisterModal: boolean;
+}
+
+export const Register = ({
+  registerUser,
+  setShowRegisterModal,
+  showRegisterModal,
+}: RegisterProps) => {
   const [username, setUsername] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState("");
-  const [open, setOpen] = useState(false);
 
   const validateEmailAddress = (email: string) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -40,12 +55,15 @@ export const Register = ({ registerUser }: RegisterProps) => {
       <Button
         data-testid="register-dialog-button"
         color="inherit"
-        onClick={() => setOpen(true)}
+        onClick={() => setShowRegisterModal(true)}
       >
         Register
       </Button>
 
-      <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog
+        open={showRegisterModal}
+        onClose={() => setShowRegisterModal(false)}
+      >
         <DialogTitle id="form-dialog-title">Register</DialogTitle>
 
         <DialogContent>
@@ -88,7 +106,7 @@ export const Register = ({ registerUser }: RegisterProps) => {
         <DialogActions>
           <Button
             data-testid="cancel-button"
-            onClick={() => setOpen(false)}
+            onClick={() => setShowRegisterModal(false)}
             color="primary"
           >
             Cancel
@@ -96,10 +114,7 @@ export const Register = ({ registerUser }: RegisterProps) => {
 
           <Button
             data-testid="register-button"
-            onClick={() => {
-              registerUser(username, emailAddress, password);
-              setOpen(false);
-            }}
+            onClick={() => registerUser(username, emailAddress, password)}
             color="primary"
             disabled={!username || !emailAddress || !password || !!emailError}
           >
@@ -110,3 +125,16 @@ export const Register = ({ registerUser }: RegisterProps) => {
     </>
   );
 };
+
+const mapStateToProps = (state: PipelinerState): StateProps => {
+  const uiState = uiSelector(state);
+
+  return {
+    showRegisterModal: uiState.showRegisterModal,
+  };
+};
+
+export const RegisterContainer = connect(mapStateToProps, {
+  registerUser,
+  setShowRegisterModal,
+})(Register);

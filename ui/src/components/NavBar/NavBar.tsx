@@ -5,15 +5,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, IconButton, Typography } from "@material-ui/core";
 
 import { UserActions } from "../UserActions";
-import { UserState } from "../../store/user/types";
-import { registerUser } from "../../store/user/thunks";
 import { PipelinerState } from "../../store/types";
 import { userSelector } from "../../store/user/selectors";
 
 export interface NavBarProps {
   appName: string;
   isSignedIn: boolean;
-  registerUser: (username: string, emailAddress: string, password: string) => void;
 }
 
 interface StateProps {
@@ -26,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   title: { flexGrow: 1 },
 }));
 
-export const NavBar = ({ appName, isSignedIn, registerUser }: NavBarProps) => {
+export const NavBar = ({ appName, isSignedIn }: NavBarProps) => {
   const classes = useStyles();
 
   return (
@@ -45,11 +42,7 @@ export const NavBar = ({ appName, isSignedIn, registerUser }: NavBarProps) => {
           {appName}
         </Typography>
 
-        <UserActions
-          data-testid="user-actions"
-          registerUser={registerUser}
-          isSignedIn={isSignedIn}
-        />
+        <UserActions data-testid="user-actions" isSignedIn={isSignedIn} />
       </Toolbar>
     </AppBar>
   );
@@ -63,6 +56,4 @@ const mapStateToProps = (state: PipelinerState): StateProps => {
   };
 };
 
-export const NavBarContainer = connect(mapStateToProps, { registerUser })(
-  NavBar
-);
+export const NavBarContainer = connect(mapStateToProps)(NavBar);

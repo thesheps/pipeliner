@@ -16,17 +16,40 @@ describe("Register", () => {
   const password = "my super awesome password";
 
   it("renders correctly", () => {
-    const { container } = render(<Register registerUser={jest.fn()} />);
+    const { container } = render(
+      <Register
+        showRegisterModal={true}
+        setShowRegisterModal={jest.fn()}
+        registerUser={jest.fn()}
+      />
+    );
 
     expect(container).toMatchSnapshot();
   });
 
-  it("validates username has been entered", () => {
-    const { getByText, getByTestId } = render(
-      <Register registerUser={jest.fn()} />
+  it("calls setShowRegisterModal on register click", () => {
+    const setShowRegisterModal = jest.fn();
+    const { getByText } = render(
+      <Register
+        showRegisterModal={false}
+        setShowRegisterModal={setShowRegisterModal}
+        registerUser={jest.fn()}
+      />
     );
 
     fireEvent.click(getByText("Register"));
+
+    expect(setShowRegisterModal).toHaveBeenCalled();
+  });
+
+  it("validates username has been entered", () => {
+    const { getByTestId } = render(
+      <Register
+        showRegisterModal={true}
+        setShowRegisterModal={jest.fn()}
+        registerUser={jest.fn()}
+      />
+    );
 
     fireEvent.change(getByTestId("emailAddress-input"), {
       target: { value: emailAddress },
@@ -40,11 +63,13 @@ describe("Register", () => {
   });
 
   it("validates emailAddress has been entered", () => {
-    const { getByText, getByTestId } = render(
-      <Register registerUser={jest.fn()} />
+    const { getByTestId } = render(
+      <Register
+        showRegisterModal={true}
+        setShowRegisterModal={jest.fn()}
+        registerUser={jest.fn()}
+      />
     );
-
-    fireEvent.click(getByText("Register"));
 
     fireEvent.change(getByTestId("username-input"), {
       target: { value: username },
@@ -58,11 +83,13 @@ describe("Register", () => {
   });
 
   it("validates emailAddress is in the correct format", () => {
-    const { getByText, getByTestId } = render(
-      <Register registerUser={jest.fn()} />
+    const { getByTestId } = render(
+      <Register
+        showRegisterModal={true}
+        setShowRegisterModal={jest.fn()}
+        registerUser={jest.fn()}
+      />
     );
-
-    fireEvent.click(getByText("Register"));
 
     fireEvent.change(getByTestId("username-input"), {
       target: { value: username },
@@ -80,11 +107,13 @@ describe("Register", () => {
   });
 
   it("validates password has been entered", () => {
-    const { getByText, getByTestId } = render(
-      <Register registerUser={jest.fn()} />
+    const { getByTestId } = render(
+      <Register
+        showRegisterModal={true}
+        setShowRegisterModal={jest.fn()}
+        registerUser={jest.fn()}
+      />
     );
-
-    fireEvent.click(getByText("Register"));
 
     fireEvent.change(getByTestId("emailAddress-input"), {
       target: { value: emailAddress },
@@ -99,11 +128,13 @@ describe("Register", () => {
 
   it("calls registerUser function upon clicking register", () => {
     const registerUser = jest.fn();
-    const { getByText, getByTestId } = render(
-      <Register registerUser={registerUser} />
+    const { getByTestId } = render(
+      <Register
+        showRegisterModal={true}
+        setShowRegisterModal={jest.fn()}
+        registerUser={registerUser}
+      />
     );
-
-    fireEvent.click(getByText("Register"));
 
     fireEvent.change(getByTestId("username-input"), {
       target: { value: username },
@@ -122,13 +153,17 @@ describe("Register", () => {
   });
 
   it("calls hide modal function upon clicking cancel", () => {
-    const { getByText, getByTestId } = render(
-      <Register registerUser={jest.fn()} />
+    const setShowRegisterModal = jest.fn();
+    const { getByTestId } = render(
+      <Register
+        showRegisterModal={true}
+        setShowRegisterModal={setShowRegisterModal}
+        registerUser={jest.fn()}
+      />
     );
 
-    fireEvent.click(getByText("Register"));
     fireEvent.click(getByTestId("cancel-button"));
 
-    expect(getByTestId("cancel-button")).not.toBeVisible();
+    expect(setShowRegisterModal).toHaveBeenCalled();
   });
 });

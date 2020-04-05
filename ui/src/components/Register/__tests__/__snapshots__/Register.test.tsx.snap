@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Register renders correctly 1`] = `
-<div>
+<div
+  aria-hidden="true"
+>
   <button
     class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-colorInherit"
     data-testid="register-dialog-button"
