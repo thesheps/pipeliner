@@ -4,8 +4,7 @@ import {
   UIActionTypes,
   SHOW_ERROR,
   HIDE_ERROR,
-  SHOW_REGISTER_MODAL,
-  HIDE_REGISTER_MODAL,
+  SET_SHOW_REGISTER_MODAL,
 } from "./types";
 
 export const uiReducer = (
@@ -17,10 +16,8 @@ export const uiReducer = (
       return { ...state, showError: true, errorMessage: action.errorMessage };
     case HIDE_ERROR:
       return { ...state, showError: false, errorMessage: "" };
-    case SHOW_REGISTER_MODAL:
-      return { ...state, showRegisterModal: true };
-    case HIDE_REGISTER_MODAL:
-      return { ...state, showRegisterModal: false };
+    case SET_SHOW_REGISTER_MODAL:
+      return { ...state, showRegisterModal: action.show };
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import { UserService } from "../../../services";
 import { registerUser } from "../thunks";
 import { setIsRegistering, setAuthToken } from "../actions";
-import { showError } from "../../ui/actions";
+import { showError, setShowRegisterModal } from "../../ui/actions";
 
 jest.mock("../../../services");
 
@@ -24,7 +24,8 @@ describe("User thunks", () => {
 
     expect(dispatch).toHaveBeenNthCalledWith(1, setIsRegistering(true));
     expect(dispatch).toHaveBeenNthCalledWith(2, setAuthToken(authToken));
-    expect(dispatch).toHaveBeenNthCalledWith(3, setIsRegistering(false));
+    expect(dispatch).toHaveBeenNthCalledWith(3, setShowRegisterModal(false));
+    expect(dispatch).toHaveBeenNthCalledWith(4, setIsRegistering(false));
   });
 
   it("dispatches setIsRegistering and showError on sad registration", async () => {

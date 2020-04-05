@@ -1,5 +1,4 @@
-export const SHOW_REGISTER_MODAL = "SHOW_REGISTER_MODAL";
-export const HIDE_REGISTER_MODAL = "HIDE_REGISTER_MODAL";
+export const SET_SHOW_REGISTER_MODAL = "SET_SHOW_REGISTER_MODAL";
 export const SHOW_ERROR = "SHOW_ERROR";
 export const HIDE_ERROR = "HIDE_ERROR";
 
@@ -12,19 +11,15 @@ export interface HideErrorAction {
   type: typeof HIDE_ERROR;
 }
 
-export interface ShowRegisterModalAction {
-  type: typeof SHOW_REGISTER_MODAL;
-}
-
-export interface HideRegisterModalAction {
-  type: typeof HIDE_REGISTER_MODAL;
+export interface SetShowRegisterModalAction {
+  type: typeof SET_SHOW_REGISTER_MODAL;
+  show: boolean;
 }
 
 export type UIActionTypes =
   | ShowErrorAction
   | HideErrorAction
-  | ShowRegisterModalAction
-  | HideRegisterModalAction;
+  | SetShowRegisterModalAction;
 
 export interface UIState {
   showRegisterModal: boolean;

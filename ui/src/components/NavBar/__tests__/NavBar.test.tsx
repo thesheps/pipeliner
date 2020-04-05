@@ -12,6 +12,7 @@ import {
 import { NavBar, NavBarContainer } from "../NavBar";
 import { initialState } from "../../../store/initialState";
 import { UserService } from "../../../services";
+import { SET_SHOW_REGISTER_MODAL } from "../../../store/ui/types";
 
 jest.mock("../../../services");
 
@@ -91,6 +92,7 @@ describe("NavBar", () => {
     await expect(actions).toEqual([
       { isRegistering: true, type: SET_IS_REGISTERING },
       { authToken: "authToken", type: SET_AUTH_TOKEN },
+      { show: false, type: SET_SHOW_REGISTER_MODAL },
       { isRegistering: false, type: SET_IS_REGISTERING },
     ]);
   });

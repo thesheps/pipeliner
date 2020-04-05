@@ -1,6 +1,6 @@
 import { uiReducer } from "../reducer";
 import { initialUIState } from "../initialState";
-import { showError, showRegisterModal, hideRegisterModal } from "../actions";
+import { showError, setShowRegisterModal } from "../actions";
 
 describe("UI Reducers", () => {
   it("returns a state containing the the specified error message", () => {
@@ -15,7 +15,7 @@ describe("UI Reducers", () => {
   });
 
   it("returns a state setting showRegisterModal to true", () => {
-    const newState = uiReducer(initialUIState, showRegisterModal());
+    const newState = uiReducer(initialUIState, setShowRegisterModal(true));
 
     expect(newState).toEqual({
       ...initialUIState,
@@ -24,7 +24,7 @@ describe("UI Reducers", () => {
   });
 
   it("returns a state setting showRegisterModal to false", () => {
-    const newState = uiReducer(initialUIState, hideRegisterModal());
+    const newState = uiReducer(initialUIState, setShowRegisterModal(false));
 
     expect(newState).toEqual({
       ...initialUIState,

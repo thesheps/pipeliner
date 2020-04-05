@@ -1,15 +1,5 @@
-import {
-  showError,
-  hideError,
-  showRegisterModal,
-  hideRegisterModal,
-} from "../actions";
-import {
-  SHOW_ERROR,
-  HIDE_ERROR,
-  SHOW_REGISTER_MODAL,
-  HIDE_REGISTER_MODAL,
-} from "../types";
+import { showError, hideError, setShowRegisterModal } from "../actions";
+import { SHOW_ERROR, HIDE_ERROR, SET_SHOW_REGISTER_MODAL } from "../types";
 
 describe("UI actions", () => {
   it("creates SHOW_ERROR action", () => {
@@ -28,12 +18,12 @@ describe("UI actions", () => {
   });
 
   it("creates SHOW_REGISTER_MODAL action", () => {
-    const action = showRegisterModal();
-    expect(action).toEqual({ type: SHOW_REGISTER_MODAL });
+    const action = setShowRegisterModal(true);
+    expect(action).toEqual({ type: SET_SHOW_REGISTER_MODAL, show: true });
   });
 
   it("creates HIDE_REGISTER_MODAL action", () => {
-    const action = hideRegisterModal();
-    expect(action).toEqual({ type: HIDE_REGISTER_MODAL });
+    const action = setShowRegisterModal(false);
+    expect(action).toEqual({ type: SET_SHOW_REGISTER_MODAL, show: false });
   });
 });

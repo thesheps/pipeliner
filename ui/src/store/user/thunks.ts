@@ -3,7 +3,7 @@ import { ThunkAction, ThunkDispatch } from "redux-thunk";
 
 import { setIsRegistering, setAuthToken } from "./actions";
 import { UserService } from "../../services";
-import { showError } from "../ui/actions";
+import { showError, setShowRegisterModal } from "../ui/actions";
 
 export const registerUser = (
   username: string,
@@ -23,6 +23,7 @@ export const registerUser = (
     );
 
     dispatch(setAuthToken(token));
+    dispatch(setShowRegisterModal(false));
   } catch (error) {
     dispatch(showError(error.message));
   } finally {
