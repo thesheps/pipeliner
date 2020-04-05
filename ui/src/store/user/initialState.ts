@@ -2,6 +2,6 @@ import { UserState } from "./types";
 
 export const initialUserState: UserState = {
   authToken: "",
-  isRegistering: false,
+  isAuthenticating: false,
   isSignedIn: false,
 };

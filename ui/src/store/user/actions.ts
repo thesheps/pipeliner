@@ -1,13 +1,15 @@
 import {
   UserActionTypes,
-  SET_IS_REGISTERING,
+  SET_IS_AUTHENTICATING,
   SET_AUTH_TOKEN,
   SET_AUTH_FAILED,
 } from "./types";
 
-export const setIsRegistering = (isRegistering: boolean): UserActionTypes => ({
-  type: SET_IS_REGISTERING,
-  isRegistering,
+export const setIsAuthenticating = (
+  isAuthenticating: boolean
+): UserActionTypes => ({
+  type: SET_IS_AUTHENTICATING,
+  isAuthenticating,
 });
 
 export const setAuthToken = (authToken: string): UserActionTypes => ({

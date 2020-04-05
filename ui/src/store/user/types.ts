@@ -1,10 +1,10 @@
-export const SET_IS_REGISTERING = "SET_IS_REGISTERING";
+export const SET_IS_AUTHENTICATING = "SET_IS_AUTHENTICATING";
 export const SET_AUTH_TOKEN = "SET_AUTH_TOKEN";
 export const SET_AUTH_FAILED = "SET_AUTH_FAILED";
 
 export interface SetIsRegisteringAction {
-  type: typeof SET_IS_REGISTERING;
-  isRegistering: boolean;
+  type: typeof SET_IS_AUTHENTICATING;
+  isAuthenticating: boolean;
 }
 
 export interface SetAuthTokenAction {
@@ -24,6 +24,6 @@ export type UserActionTypes =
 
 export interface UserState {
   isSignedIn: boolean;
-  isRegistering: boolean;
+  isAuthenticating: boolean;
   authToken: string;
 }

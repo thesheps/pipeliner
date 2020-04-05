@@ -15,7 +15,7 @@ describe("UI Selector", () => {
     ui,
     user: {
       authToken: "MY_AUTH_TOKEN",
-      isRegistering: true,
+      isAuthenticating: true,
       isSignedIn: true,
     },
   };

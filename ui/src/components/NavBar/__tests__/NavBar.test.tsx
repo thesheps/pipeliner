@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { fireEvent, render } from "@testing-library/react";
 
 import {
-  SET_IS_REGISTERING,
+  SET_IS_AUTHENTICATING,
   SET_AUTH_TOKEN,
   UserState,
 } from "../../../store/user/types";
@@ -50,7 +50,7 @@ describe("NavBar", () => {
   it("maps state properties correctly", () => {
     const userState: UserState = {
       isSignedIn: true,
-      isRegistering: false,
+      isAuthenticating: false,
       authToken: "",
     };
 
@@ -99,11 +99,11 @@ describe("NavBar", () => {
     const actions = await store.getActions();
 
     await expect(actions).toEqual([
-      { isRegistering: true, type: SET_IS_REGISTERING },
+      { isAuthenticating: true, type: SET_IS_AUTHENTICATING },
       { authToken: "authToken", type: SET_AUTH_TOKEN },
       { successMessage: "Registration Successful!", type: SHOW_SUCCESS },
       { show: false, type: SET_SHOW_REGISTER_MODAL },
-      { isRegistering: false, type: SET_IS_REGISTERING },
+      { isAuthenticating: false, type: SET_IS_AUTHENTICATING },
     ]);
   });
 });

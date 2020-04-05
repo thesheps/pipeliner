@@ -1,7 +1,7 @@
 import { AnyAction } from "redux";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
 
-import { setIsRegistering, setAuthToken } from "./actions";
+import { setIsAuthenticating, setAuthToken } from "./actions";
 import { UserService } from "../../services";
 import { showError, setShowRegisterModal, showSuccess } from "../ui/actions";
 
@@ -13,7 +13,7 @@ export const registerUser = (
   dispatch: ThunkDispatch<{}, {}, AnyAction>
 ) => {
   const userService = new UserService(process.env.PIPELINER_API_URL);
-  dispatch(setIsRegistering(true));
+  dispatch(setIsAuthenticating(true));
 
   try {
     const token = await userService.registerUser(
@@ -28,6 +28,6 @@ export const registerUser = (
   } catch (error) {
     dispatch(showError(error.message));
   } finally {
-    dispatch(setIsRegistering(false));
+    dispatch(setIsAuthenticating(false));
   }
 };

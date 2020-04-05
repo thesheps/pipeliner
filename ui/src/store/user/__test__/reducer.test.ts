@@ -1,12 +1,12 @@
 import { UserState } from "../types";
 import { userReducer } from "../reducer";
-import { setAuthToken, setIsRegistering } from "../actions";
+import { setAuthToken, setIsAuthenticating } from "../actions";
 
 describe("Reducers", () => {
   const initialState: UserState = {
     authToken: "",
     isSignedIn: false,
-    isRegistering: false,
+    isAuthenticating: false,
   };
 
   it("returns a state containing the updated authToken", () => {
@@ -19,13 +19,16 @@ describe("Reducers", () => {
     });
   });
 
-  it("returns a state containing the updated isRegistering value", () => {
-    const isRegistering = true;
-    const newState = userReducer(initialState, setIsRegistering(isRegistering));
+  it("returns a state containing the updated isAuthenticating value", () => {
+    const isAuthenticating = true;
+    const newState = userReducer(
+      initialState,
+      setIsAuthenticating(isAuthenticating)
+    );
 
     expect(newState).toEqual({
       ...initialState,
-      isRegistering,
+      isAuthenticating,
     });
   });
 });

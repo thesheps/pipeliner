@@ -2,8 +2,7 @@ import { initialUserState } from "./initialState";
 import {
   UserState,
   UserActionTypes,
-  SET_IS_REGISTERING,
-  SET_AUTH_FAILED,
+  SET_IS_AUTHENTICATING,
   SET_AUTH_TOKEN,
 } from "./types";
 
@@ -12,8 +11,8 @@ export const userReducer = (
   action: UserActionTypes
 ): UserState => {
   switch (action.type) {
-    case SET_IS_REGISTERING:
-      return { ...state, isRegistering: action.isRegistering };
+    case SET_IS_AUTHENTICATING:
+      return { ...state, isAuthenticating: action.isAuthenticating };
     case SET_AUTH_TOKEN:
       return { ...state, authToken: action.authToken };
     default:
