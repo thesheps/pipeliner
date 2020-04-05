@@ -17,5 +17,6 @@
     "sourceMap": true,
     "target": "es6"
   },
+  "references": [{ "path": "../db/tsconfig.build.json" }],
   "exclude": ["node_modules", "dist", "bin", "jest.config.js"]
 }

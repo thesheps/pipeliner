@@ -1,2 +1,2 @@
-export * from "./register";
-export * from "./signIn";
+export * from "./registerRouter";
+export * from "./signInRouter";

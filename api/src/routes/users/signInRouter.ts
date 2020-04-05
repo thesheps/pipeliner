@@ -9,7 +9,7 @@ const signInRouter = express.Router();
 
 const checks = [
   check("emailAddress").isEmail(),
-  check("password").isLength({ max: 128 })
+  check("password").isLength({ max: 128 }),
 ];
 
 signInRouter.post("/sign-in", checks, async (req, res) => {
@@ -18,7 +18,7 @@ signInRouter.post("/sign-in", checks, async (req, res) => {
   if (!errors.isEmpty()) {
     return res
       .status(422)
-      .json(errors.array().map(e => `${e.msg} - ${e.param}`));
+      .json(errors.array().map((e) => `${e.msg} - ${e.param}`));
   }
 
   const signIn = req.body as SignIn;
