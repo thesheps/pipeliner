@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:alpine
     ports:
-      - published: $PIPELINER_DB_PORT
+      - published: 5432
         target: 5432
     environment:
       POSTGRES_DB: $PIPELINER_DB_DATABASE

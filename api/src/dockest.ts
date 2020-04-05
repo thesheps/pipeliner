@@ -5,21 +5,21 @@ const dockest = new Dockest({});
 
 const dockestServices: DockestService[] = [
   {
-    serviceName: "db-integration",
+    serviceName: "db",
     commands: ["sequelize db:migrate"],
     readinessCheck: async ({
       defaultReadinessChecks: { postgres },
       dockerComposeFileService: {
-        environment: { POSTGRES_DB, POSTGRES_USER }
-      }
+        environment: { POSTGRES_DB, POSTGRES_USER },
+      },
     }) =>
       Promise.all([
-        (new Promise(resolve => {
+        (new Promise((resolve) => {
           setTimeout(resolve, 50);
         }),
-        postgres({ POSTGRES_DB, POSTGRES_USER }))
-      ])
-  }
+        postgres({ POSTGRES_DB, POSTGRES_USER })),
+      ]),
+  },
 ];
 
 dockest.run(dockestServices);

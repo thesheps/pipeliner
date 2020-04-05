@@ -25,7 +25,9 @@ export class UserService {
 
       return data;
     } catch (error) {
-      throw new Error(error.response.data);
+      if (error.response?.data) throw new Error(error.response.data);
+
+      throw error;
     }
   }
 }

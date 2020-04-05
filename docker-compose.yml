@@ -3,23 +3,18 @@ version: "3.7"
 services:
   db:
     build: "./db"
-    environment:
-      - POSTGRES_USER=pipeliner
-      - POSTGRES_PASSWORD=pipeliner
+    env_file: .env
     ports:
       - "5432:5432"
 
   api:
     build: "./api"
-    environment:
-      - PIPELINER_API_PORT=3333
+    env_file: .env
     ports:
       - "3333:3333"
 
   ui:
     build: "./ui"
-    environment:
-      - PIPELINER_UI_PORT=2222
-      - PIPELINER_API_URL=http://localhost:3333
+    env_file: .env
     ports:
       - "2222:2222"
