@@ -70,10 +70,10 @@ export const Register = ({
           <DialogContentText>Register here to get going!</DialogContentText>
 
           <TextField
+            autoFocus
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             inputProps={{ "data-testid": "username-input" }}
-            autoFocus
             margin="dense"
             label="Username"
             type="text"

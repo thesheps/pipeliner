@@ -62,6 +62,7 @@ export const SignIn = ({
           <DialogContentText>Sign In here to get going!</DialogContentText>
 
           <TextField
+            autoFocus
             value={emailAddress}
             onChange={(e) => validateEmailAddress(e.target.value)}
             inputProps={{ "data-testid": "emailAddress-input" }}
