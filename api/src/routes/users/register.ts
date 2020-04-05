@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import { check, validationResult } from "express-validator";
 
 import { createUser, UserError } from "@pipeliner/db";
-import { resolveTxt } from "dns";
 
 const registerRouter = express.Router();
 
