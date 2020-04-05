@@ -1,13 +1,13 @@
 import {
   SET_IS_AUTHENTICATING,
-  SET_AUTH_TOKEN,
   SET_AUTH_FAILED,
+  SIGN_IN,
   SIGN_OUT,
 } from "../types";
 import {
   setIsAuthenticating,
-  setAuthToken,
   setAuthFailed,
+  signInUser,
   signOutUser,
 } from "../actions";
 
@@ -33,16 +33,6 @@ describe("User actions", () => {
   });
 
   describe("Auth Tokens", () => {
-    it("creates setAuthToken action with the specified auth token", () => {
-      const authToken = "my lovely horse";
-      const action = setAuthToken(authToken);
-
-      expect(action).toEqual({
-        type: SET_AUTH_TOKEN,
-        authToken,
-      });
-    });
-
     it("creates setAuthFailed action with the specified error message", () => {
       const errorMessage = "my lovely error";
       const action = setAuthFailed(errorMessage);
@@ -50,6 +40,14 @@ describe("User actions", () => {
       expect(action).toEqual({
         type: SET_AUTH_FAILED,
         errorMessage: errorMessage,
+      });
+    });
+
+    it("signs the user in", () => {
+      const action = signInUser();
+
+      expect(action).toEqual({
+        type: SIGN_IN,
       });
     });
 

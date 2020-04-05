@@ -1,6 +1,6 @@
 export const SET_IS_AUTHENTICATING = "SET_IS_AUTHENTICATING";
-export const SET_AUTH_TOKEN = "SET_AUTH_TOKEN";
 export const SET_AUTH_FAILED = "SET_AUTH_FAILED";
+export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
 
 export interface SetIsAuthenticatingAction {
@@ -8,14 +8,13 @@ export interface SetIsAuthenticatingAction {
   isAuthenticating: boolean;
 }
 
-export interface SetAuthTokenAction {
-  type: typeof SET_AUTH_TOKEN;
-  authToken: string;
-}
-
 export interface SetAuthFailedAction {
   type: typeof SET_AUTH_FAILED;
   errorMessage: string;
+}
+
+export interface SignInAction {
+  type: typeof SIGN_IN;
 }
 
 export interface SignOutAction {
@@ -24,12 +23,11 @@ export interface SignOutAction {
 
 export type UserActionTypes =
   | SetIsAuthenticatingAction
-  | SetAuthTokenAction
   | SetAuthFailedAction
+  | SignInAction
   | SignOutAction;
 
 export interface UserState {
   isSignedIn: boolean;
   isAuthenticating: boolean;
-  authToken: string;
 }

@@ -4,7 +4,6 @@ import { UserState } from "../types";
 
 describe("User Selector", () => {
   const user: UserState = {
-    authToken: "MY_AUTH_TOKEN",
     isAuthenticating: true,
     isSignedIn: true,
   };

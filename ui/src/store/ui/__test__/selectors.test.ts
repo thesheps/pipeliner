@@ -15,7 +15,6 @@ describe("UI Selector", () => {
   const state: PipelinerState = {
     ui,
     user: {
-      authToken: "MY_AUTH_TOKEN",
       isAuthenticating: true,
       isSignedIn: true,
     },

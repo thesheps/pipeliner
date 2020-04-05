@@ -1,10 +1,12 @@
+import Cookies from "js-cookie";
+
 import { UserService } from "../../../services";
 import {
   registerUserThunk,
   signInUserThunk,
   signOutUserThunk,
 } from "../thunks";
-import { setIsAuthenticating, setAuthToken, signOutUser } from "../actions";
+import { setIsAuthenticating, signOutUser, signInUser } from "../actions";
 import {
   showError,
   setShowRegisterModal,
@@ -12,6 +14,7 @@ import {
   setShowSignInModal,
 } from "../../ui/actions";
 
+jest.mock("js-cookie");
 jest.mock("../../../services");
 
 describe("User Registration", () => {
@@ -19,7 +22,7 @@ describe("User Registration", () => {
     jest.clearAllMocks();
   });
 
-  it("dispatches setIsAuthenticating and setAuthToken on happy registration", async () => {
+  it("dispatches expected actions on happy registration", async () => {
     const authToken = "TEST_AUTH";
     const dispatch = jest.fn();
     UserService.prototype.registerUser = (): Promise<string> =>
@@ -32,7 +35,7 @@ describe("User Registration", () => {
     );
 
     expect(dispatch).toHaveBeenNthCalledWith(1, setIsAuthenticating(true));
-    expect(dispatch).toHaveBeenNthCalledWith(2, setAuthToken(authToken));
+    expect(dispatch).toHaveBeenNthCalledWith(2, signInUser());
     expect(dispatch).toHaveBeenNthCalledWith(
       3,
       showSuccess("Registration Successful!")
@@ -64,7 +67,7 @@ describe("User SignIn", () => {
     jest.clearAllMocks();
   });
 
-  it("dispatches setIsAuthenticating and setAuthToken on happy sign-in", async () => {
+  it("dispatches expected actions on happy sign-in", async () => {
     const authToken = "TEST_AUTH";
     const dispatch = jest.fn();
     UserService.prototype.signInUser = (): Promise<string> =>
@@ -76,8 +79,9 @@ describe("User SignIn", () => {
       {}
     );
 
+    expect(Cookies.set).toHaveBeenCalledWith("authToken", authToken);
     expect(dispatch).toHaveBeenNthCalledWith(1, setIsAuthenticating(true));
-    expect(dispatch).toHaveBeenNthCalledWith(2, setAuthToken(authToken));
+    expect(dispatch).toHaveBeenNthCalledWith(2, signInUser());
     expect(dispatch).toHaveBeenNthCalledWith(
       3,
       showSuccess("Sign-In Successful!")
@@ -109,6 +113,7 @@ describe("User SignIn", () => {
 
     await signOutUserThunk()(dispatch, jest.fn(), {});
 
+    expect(Cookies.remove).toHaveBeenCalledWith("authToken");
     expect(dispatch).toHaveBeenNthCalledWith(1, signOutUser());
     expect(dispatch).toHaveBeenNthCalledWith(2, showSuccess(successMessage));
   });

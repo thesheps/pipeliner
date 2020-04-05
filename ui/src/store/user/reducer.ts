@@ -3,7 +3,7 @@ import {
   UserState,
   UserActionTypes,
   SET_IS_AUTHENTICATING,
-  SET_AUTH_TOKEN,
+  SIGN_IN,
   SIGN_OUT,
 } from "./types";
 
@@ -14,10 +14,10 @@ export const userReducer = (
   switch (action.type) {
     case SET_IS_AUTHENTICATING:
       return { ...state, isAuthenticating: action.isAuthenticating };
-    case SET_AUTH_TOKEN:
-      return { ...state, authToken: action.authToken, isSignedIn: true };
+    case SIGN_IN:
+      return { ...state, isSignedIn: true };
     case SIGN_OUT:
-      return { ...state, authToken: null, isSignedIn: false };
+      return { ...state, isSignedIn: false };
     default:
       return state;
   }

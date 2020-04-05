@@ -1,9 +1,9 @@
 import {
   UserActionTypes,
   SET_IS_AUTHENTICATING,
-  SET_AUTH_TOKEN,
   SET_AUTH_FAILED,
   SIGN_OUT,
+  SIGN_IN,
 } from "./types";
 
 export const setIsAuthenticating = (
@@ -13,14 +13,13 @@ export const setIsAuthenticating = (
   isAuthenticating,
 });
 
-export const setAuthToken = (authToken: string): UserActionTypes => ({
-  type: SET_AUTH_TOKEN,
-  authToken,
-});
-
 export const setAuthFailed = (errorMessage: string): UserActionTypes => ({
   type: SET_AUTH_FAILED,
   errorMessage,
+});
+
+export const signInUser = (): UserActionTypes => ({
+  type: SIGN_IN,
 });
 
 export const signOutUser = (): UserActionTypes => ({

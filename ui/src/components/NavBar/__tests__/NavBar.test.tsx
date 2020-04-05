@@ -6,8 +6,8 @@ import { fireEvent, render } from "@testing-library/react";
 
 import {
   SET_IS_AUTHENTICATING,
-  SET_AUTH_TOKEN,
   UserState,
+  SIGN_IN,
 } from "../../../store/user/types";
 import { SET_SHOW_REGISTER_MODAL, SHOW_SUCCESS } from "../../../store/ui/types";
 import { UserService } from "../../../services";
@@ -51,7 +51,6 @@ describe("NavBar", () => {
     const userState: UserState = {
       isSignedIn: true,
       isAuthenticating: false,
-      authToken: "",
     };
 
     const pipelinerState = { ...initialState, user: userState };
@@ -100,7 +99,7 @@ describe("NavBar", () => {
 
     await expect(actions).toEqual([
       { isAuthenticating: true, type: SET_IS_AUTHENTICATING },
-      { authToken: "authToken", type: SET_AUTH_TOKEN },
+      { type: SIGN_IN },
       { successMessage: "Registration Successful!", type: SHOW_SUCCESS },
       { show: false, type: SET_SHOW_REGISTER_MODAL },
       { isAuthenticating: false, type: SET_IS_AUTHENTICATING },

@@ -1,7 +1,8 @@
+import Cookies from "js-cookie";
 import { AnyAction } from "redux";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
 
-import { setIsAuthenticating, setAuthToken, signOutUser } from "./actions";
+import { setIsAuthenticating, signOutUser, signInUser } from "./actions";
 import { UserService } from "../../services";
 import {
   showError,
@@ -21,13 +22,14 @@ export const registerUserThunk = (
   dispatch(setIsAuthenticating(true));
 
   try {
-    const token = await userService.registerUser(
+    const authToken = await userService.registerUser(
       username,
       emailAddress,
       password
     );
 
-    dispatch(setAuthToken(token));
+    Cookies.set("authToken", authToken);
+    dispatch(signInUser());
     dispatch(showSuccess("Registration Successful!"));
     dispatch(setShowRegisterModal(false));
   } catch (error) {
@@ -47,9 +49,10 @@ export const signInUserThunk = (
   dispatch(setIsAuthenticating(true));
 
   try {
-    const token = await userService.signInUser(emailAddress, password);
+    const authToken = await userService.signInUser(emailAddress, password);
+    Cookies.set("authToken", authToken);
 
-    dispatch(setAuthToken(token));
+    dispatch(signInUser());
     dispatch(showSuccess("Sign-In Successful!"));
     dispatch(setShowSignInModal(false));
   } catch (error) {
@@ -65,6 +68,7 @@ export const signOutUserThunk = (): ThunkAction<
   {},
   AnyAction
 > => async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+  Cookies.remove("authToken");
   dispatch(signOutUser());
   dispatch(showSuccess("Sign-Out Successful!"));
 };
