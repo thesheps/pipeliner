@@ -1,6 +1,6 @@
 {
   "name": "@pipeliner/examples",
-  "version": "1.6.0-alpha.0",
+  "version": "1.7.4-alpha.0",
   "description": "pipeliner - examples",
   "homepage": "http://thesheps.github.io/pipeliner",
   "license": "GPL-3.0-only",
@@ -16,7 +16,7 @@
     "compile": "tsc --build tsconfig.build.json"
   },
   "dependencies": {
-    "@pipeliner/core": "^1.6.0-alpha.0",
+    "@pipeliner/core": "^1.7.4-alpha.0",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
