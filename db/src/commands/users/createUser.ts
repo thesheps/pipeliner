@@ -2,7 +2,7 @@ import { User, UserModel } from "../../models/user";
 import {
   DuplicateEmailAddressError,
   DuplicateUsernameError
-} from "../../errors/user";
+} from "../../errors/users";
 
 export const createUser = async (user: User): Promise<User> => {
   try {

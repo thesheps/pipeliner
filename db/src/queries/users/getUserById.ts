@@ -1,5 +1,5 @@
 import { User, UserModel } from "../../models";
-import { UserNotFoundError } from "../../errors/user/userNotFoundError";
+import { UserNotFoundError } from "../../errors/users/userNotFoundError";
 
 export const getUserById = async (id: number): Promise<User> => {
   const user = await UserModel.findByPk(id);
