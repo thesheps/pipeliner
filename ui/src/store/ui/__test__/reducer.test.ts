@@ -1,6 +1,6 @@
 import { uiReducer } from "../reducer";
 import { initialUIState } from "../initialState";
-import { showError, setShowRegisterModal } from "../actions";
+import { showError, setShowRegisterModal, showSuccess } from "../actions";
 
 describe("UI Reducers", () => {
   it("returns a state containing the the specified error message", () => {
@@ -11,6 +11,17 @@ describe("UI Reducers", () => {
       ...initialUIState,
       errorMessage,
       showError: true,
+    });
+  });
+
+  it("returns a state containing the the specified success message", () => {
+    const successMessage = "Something Works!!!";
+    const newState = uiReducer(initialUIState, showSuccess(successMessage));
+
+    expect(newState).toEqual({
+      ...initialUIState,
+      successMessage,
+      showSuccess: true,
     });
   });
 

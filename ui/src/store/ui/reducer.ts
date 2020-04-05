@@ -5,6 +5,8 @@ import {
   SHOW_ERROR,
   HIDE_ERROR,
   SET_SHOW_REGISTER_MODAL,
+  SHOW_SUCCESS,
+  HIDE_SUCCESS,
 } from "./types";
 
 export const uiReducer = (
@@ -16,6 +18,14 @@ export const uiReducer = (
       return { ...state, showError: true, errorMessage: action.errorMessage };
     case HIDE_ERROR:
       return { ...state, showError: false, errorMessage: "" };
+    case SHOW_SUCCESS:
+      return {
+        ...state,
+        showSuccess: true,
+        successMessage: action.successMessage,
+      };
+    case HIDE_SUCCESS:
+      return { ...state, showSuccess: false, successMessage: "" };
     case SET_SHOW_REGISTER_MODAL:
       return { ...state, showRegisterModal: action.show };
     default:

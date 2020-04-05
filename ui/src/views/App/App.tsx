@@ -7,6 +7,7 @@ import { APP_NAME } from "../../constants";
 import { NavBarContainer } from "../../components/NavBar";
 import { rootReducer } from "../../store/rootReducer";
 import { ErrorContainer } from "../../components/Error";
+import { SuccessContainer } from "../../components/Success";
 
 // @ts-ignore TS2339
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -19,5 +20,6 @@ export const App = () => (
   <Provider store={store}>
     <NavBarContainer appName={APP_NAME} />
     <ErrorContainer />
+    <SuccessContainer />
   </Provider>
 );

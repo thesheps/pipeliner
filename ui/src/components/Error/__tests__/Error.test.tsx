@@ -52,8 +52,10 @@ describe("Error", () => {
 
   it("maps state properties correctly", () => {
     const initialUIState: UIState = {
-      errorMessage: "Whoops!",
       showError: true,
+      errorMessage: "Whoops!",
+      showSuccess: false,
+      successMessage: "",
       showRegisterModal: false,
     };
 

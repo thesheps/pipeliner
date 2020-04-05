@@ -9,7 +9,7 @@ import {
   SET_AUTH_TOKEN,
   UserState,
 } from "../../../store/user/types";
-import { SET_SHOW_REGISTER_MODAL } from "../../../store/ui/types";
+import { SET_SHOW_REGISTER_MODAL, SHOW_SUCCESS } from "../../../store/ui/types";
 import { UserService } from "../../../services";
 import { NavBar, NavBarContainer } from "../NavBar";
 import { initialState } from "../../../store/initialState";
@@ -101,6 +101,7 @@ describe("NavBar", () => {
     await expect(actions).toEqual([
       { isRegistering: true, type: SET_IS_REGISTERING },
       { authToken: "authToken", type: SET_AUTH_TOKEN },
+      { successMessage: "Registration Successful!", type: SHOW_SUCCESS },
       { show: false, type: SET_SHOW_REGISTER_MODAL },
       { isRegistering: false, type: SET_IS_REGISTERING },
     ]);

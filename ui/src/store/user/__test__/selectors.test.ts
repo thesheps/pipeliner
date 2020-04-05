@@ -1,8 +1,9 @@
 import { PipelinerState } from "../../types";
 import { userSelector } from "../selectors";
+import { UserState } from "../types";
 
 describe("User Selector", () => {
-  const user = {
+  const user: UserState = {
     authToken: "MY_AUTH_TOKEN",
     isRegistering: true,
     isSignedIn: true,
@@ -10,8 +11,10 @@ describe("User Selector", () => {
 
   const state: PipelinerState = {
     ui: {
-      errorMessage: "Error Message",
       showError: true,
+      errorMessage: "Error Message",
+      showSuccess: false,
+      successMessage: "",
       showRegisterModal: false,
     },
     user,

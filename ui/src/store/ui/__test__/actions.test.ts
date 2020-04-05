@@ -1,5 +1,17 @@
-import { showError, hideError, setShowRegisterModal } from "../actions";
-import { SHOW_ERROR, HIDE_ERROR, SET_SHOW_REGISTER_MODAL } from "../types";
+import {
+  showError,
+  showSuccess,
+  hideError,
+  hideSuccess,
+  setShowRegisterModal,
+} from "../actions";
+import {
+  SHOW_ERROR,
+  HIDE_ERROR,
+  SET_SHOW_REGISTER_MODAL,
+  SHOW_SUCCESS,
+  HIDE_SUCCESS,
+} from "../types";
 
 describe("UI actions", () => {
   it("creates SHOW_ERROR action", () => {
@@ -15,6 +27,21 @@ describe("UI actions", () => {
   it("creates HIDE_ERROR action", () => {
     const action = hideError();
     expect(action).toEqual({ type: HIDE_ERROR });
+  });
+
+  it("creates SHOW_SUCCESS action", () => {
+    const successMessage = "YAY!!";
+    const action = showSuccess(successMessage);
+
+    expect(action).toEqual({
+      type: SHOW_SUCCESS,
+      successMessage,
+    });
+  });
+
+  it("creates HIDE_SUCCESS action", () => {
+    const action = hideSuccess();
+    expect(action).toEqual({ type: HIDE_SUCCESS });
   });
 
   it("creates SHOW_REGISTER_MODAL action", () => {

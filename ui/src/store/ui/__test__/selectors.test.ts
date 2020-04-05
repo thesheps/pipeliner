@@ -4,8 +4,10 @@ import { UIState } from "../types";
 
 describe("UI Selector", () => {
   const ui: UIState = {
-    errorMessage: "Error Message",
     showError: true,
+    errorMessage: "Error Message",
+    showSuccess: false,
+    successMessage: "",
     showRegisterModal: false,
   };
 
