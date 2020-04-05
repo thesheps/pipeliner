@@ -3,7 +3,7 @@
   "version": "1.7.3-alpha.0",
   "description": "pipeliner - ui",
   "homepage": "http://thesheps.github.io/pipeliner",
-  "license": "ISC",
+  "license": "GPL-3.0-only",
   "author": "Chris Shepherd <me@thesheps.dev>",
   "main": "dist/index",
   "types": "dist/index",
