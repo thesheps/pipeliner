@@ -3,13 +3,14 @@ import jwt from "jsonwebtoken";
 import { check, validationResult } from "express-validator";
 
 import { createUser, UserError } from "@pipeliner/db";
+import { resolveTxt } from "dns";
 
 const registerRouter = express.Router();
 
 const checks = [
   check("emailAddress").isEmail(),
   check("username").isLength({ max: 128 }),
-  check("password").isLength({ max: 128 })
+  check("password").isLength({ max: 128 }),
 ];
 
 registerRouter.post("/register", checks, async (req, res) => {
@@ -18,7 +19,7 @@ registerRouter.post("/register", checks, async (req, res) => {
   if (!errors.isEmpty()) {
     return res
       .status(422)
-      .json(errors.array().map(e => `${e.msg} - ${e.param}`));
+      .json(errors.array().map((e) => `${e.msg} - ${e.param}`));
   }
 
   try {
@@ -29,7 +30,7 @@ registerRouter.post("/register", checks, async (req, res) => {
   } catch (error) {
     if (error instanceof UserError) return res.status(409).json(error.message);
 
-    throw error;
+    return res.status(500).json(error.message);
   }
 });
 

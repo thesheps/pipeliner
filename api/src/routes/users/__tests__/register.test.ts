@@ -13,7 +13,7 @@ describe("Users", () => {
     const register: Register = {
       emailAddress: "joe.bloggs@invalid.com",
       username: "joe_bloggs",
-      password: "mypassword"
+      password: "mypassword",
     };
 
     const postAndValidate = async (
@@ -25,7 +25,7 @@ describe("Users", () => {
         .post("/users/register")
         .send(user)
         .expect(code)
-        .then(res => {
+        .then((res) => {
           expect(res.body).toEqual([msg]);
         });
     };
@@ -41,7 +41,7 @@ describe("Users", () => {
 
       it("validates the username length", async () => {
         await postAndValidate(
-          { ...register, username: [...Array(130).map(a => "a")].join() },
+          { ...register, username: [...Array(130).map((a) => "a")].join() },
           "Invalid value - username",
           422
         );
@@ -49,7 +49,7 @@ describe("Users", () => {
 
       it("validates the password length", async () => {
         await postAndValidate(
-          { ...register, password: [...Array(130).map(a => "a")].join() },
+          { ...register, password: [...Array(130).map((a) => "a")].join() },
           "Invalid value - password",
           422
         );
@@ -60,7 +60,7 @@ describe("Users", () => {
       beforeEach(async () => {
         await UserModel.destroy({
           where: {},
-          truncate: true
+          truncate: true,
         });
       });
 
@@ -69,7 +69,7 @@ describe("Users", () => {
           .post("/users/register")
           .send(register)
           .expect(200)
-          .then(async res => {
+          .then(async (res) => {
             const result = await jwt.verify(
               res.body,
               process.env.PIPELINER_JWT_KEY
@@ -80,15 +80,13 @@ describe("Users", () => {
       });
 
       it("returns http conflict if username already exists", async () => {
-        await request(app)
-          .post("/users/register")
-          .send(register);
+        await request(app).post("/users/register").send(register);
 
         await request(app)
           .post("/users/register")
           .send({ ...register, emailAddress: "unique.address@invalid.com" })
           .expect(409)
-          .then(res => {
+          .then((res) => {
             expect(res.body).toEqual(
               `A user with the username ${register.username} already exists!`
             );
@@ -96,15 +94,13 @@ describe("Users", () => {
       });
 
       it("returns http conflict if email address already exists", async () => {
-        await request(app)
-          .post("/users/register")
-          .send(register);
+        await request(app).post("/users/register").send(register);
 
         await request(app)
           .post("/users/register")
           .send({ ...register, username: "bobby.davro" })
           .expect(409)
-          .then(res => {
+          .then((res) => {
             expect(res.body).toEqual(
               `A user with the email address ${register.emailAddress} already exists!`
             );

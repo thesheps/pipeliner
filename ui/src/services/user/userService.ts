@@ -14,14 +14,18 @@ export class UserService {
     emailAddress: string,
     password: string
   ): Promise<string> {
-    const response = await axios.post(this.registerUrl(), {
-      username,
-      emailAddress,
-      password,
-    });
+    try {
+      const response = await axios.post(this.registerUrl(), {
+        username,
+        emailAddress,
+        password,
+      });
 
-    const { data } = response;
+      const { data } = response;
 
-    return data;
+      return data;
+    } catch (error) {
+      throw new Error(error.response.data);
+    }
   }
 }

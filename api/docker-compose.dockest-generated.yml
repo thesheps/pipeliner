@@ -6,6 +6,6 @@ services:
       POSTGRES_USER: pipeliner
     image: postgres:alpine
     ports:
-    - published: 5433
+    - published: 5432
       target: 5432
 version: '3.7'
