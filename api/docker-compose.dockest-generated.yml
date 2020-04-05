@@ -1,6 +1,30 @@
 services:
-  db-integration:
+  api:
+    build:
+      context: /Users/sheps/code/pipeliner/api
     environment:
+      PIPELINER_API_PORT: '3333'
+      PIPELINER_DB_DATABASE: pipeliner
+      PIPELINER_DB_HOST: 127.0.0.1
+      PIPELINER_DB_PASSWORD: pipeliner
+      PIPELINER_DB_PORT: '5432'
+      PIPELINER_DB_USERNAME: pipeliner
+      PIPELINER_JWT_KEY: my-super-strong-amazing-key
+      POSTGRES_DB: pipeliner
+      POSTGRES_PASSWORD: pipeliner
+      POSTGRES_USER: pipeliner
+    ports:
+    - published: 3333
+      target: 3333
+  db:
+    environment:
+      PIPELINER_API_PORT: '3333'
+      PIPELINER_DB_DATABASE: pipeliner
+      PIPELINER_DB_HOST: 127.0.0.1
+      PIPELINER_DB_PASSWORD: pipeliner
+      PIPELINER_DB_PORT: '5432'
+      PIPELINER_DB_USERNAME: pipeliner
+      PIPELINER_JWT_KEY: my-super-strong-amazing-key
       POSTGRES_DB: pipeliner
       POSTGRES_PASSWORD: pipeliner
       POSTGRES_USER: pipeliner

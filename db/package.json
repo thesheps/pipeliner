@@ -14,6 +14,7 @@
     "build": "npm run clean && npm run compile",
     "compile": "tsc --build tsconfig.build.json",
     "migrate": "env-cmd sequelize db:migrate",
+    "pretest": "npm run build",
     "test": "env-cmd ts-node ./src/dockest",
     "start": "./start.sh",
     "poststart": "npm run migrate"

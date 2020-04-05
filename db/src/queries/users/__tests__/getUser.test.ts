@@ -3,21 +3,25 @@ import { createUser } from "../../../commands";
 import { getUser } from "..";
 
 describe("getUser", () => {
+  let id: number;
+
   const expectedUser: User = {
     password: "password",
     emailAddress: "steve.buscemi@invalid.com",
-    username: "s_buscemi"
+    username: "s_buscemi",
   };
 
   beforeEach(async () => {
+    id = (await createUser(expectedUser)).id;
+  });
+
+  afterEach(async () => {
     await UserModel.destroy({
-      where: {},
-      truncate: true
+      where: { id: id },
     });
   });
 
   it("retrieves saved user by username and password", async () => {
-    await createUser(expectedUser);
     const retrievedUser = await getUser(
       expectedUser.emailAddress,
       expectedUser.password
@@ -28,8 +32,6 @@ describe("getUser", () => {
   });
 
   it("throws BadPassword error if the password doesn't match", async () => {
-    await createUser(expectedUser);
-
     await expect(
       getUser(
         expectedUser.emailAddress,

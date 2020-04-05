@@ -12,13 +12,12 @@ describe("Users", () => {
   const expectedUser: User = {
     emailAddress: "john.doe@invalid.com",
     password: "password",
-    username: "j_doe"
+    username: "j_doe",
   };
 
   beforeEach(async () => {
     await UserModel.destroy({
-      where: {},
-      truncate: true
+      where: { username: "j_doe" },
     });
 
     await createUser(expectedUser);
@@ -27,7 +26,7 @@ describe("Users", () => {
   describe("signing in", () => {
     const signIn: SignIn = {
       emailAddress: expectedUser.emailAddress,
-      password: expectedUser.password
+      password: expectedUser.password,
     };
 
     describe("validation", () => {
@@ -36,7 +35,7 @@ describe("Users", () => {
           .post("/users/sign-in")
           .send(user)
           .expect(422)
-          .then(res => {
+          .then((res) => {
             expect(res.body).toEqual([msg]);
           });
       };
@@ -50,7 +49,7 @@ describe("Users", () => {
 
       it("validates the password length", async () => {
         await postAndValidate(
-          { ...signIn, password: [...Array(130).map(a => "a")].join() },
+          { ...signIn, password: [...Array(130).map((a) => "a")].join() },
           "Invalid value - password"
         );
       });
@@ -70,7 +69,7 @@ describe("Users", () => {
           .post("/users/sign-in")
           .send(signIn)
           .expect(200)
-          .then(async res => {
+          .then(async (res) => {
             const result = await jwt.verify(
               res.body,
               process.env.PIPELINER_JWT_KEY

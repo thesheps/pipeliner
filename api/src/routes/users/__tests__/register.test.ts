@@ -59,8 +59,7 @@ describe("Users", () => {
     describe("authentication", () => {
       beforeEach(async () => {
         await UserModel.destroy({
-          where: {},
-          truncate: true,
+          where: { username: "joe_bloggs" },
         });
       });
 
