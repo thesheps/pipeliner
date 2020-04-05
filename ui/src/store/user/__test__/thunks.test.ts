@@ -1,7 +1,12 @@
 import { UserService } from "../../../services";
-import { registerUser } from "../thunks";
+import { registerUser, signInUser } from "../thunks";
 import { setIsAuthenticating, setAuthToken } from "../actions";
-import { showError, setShowRegisterModal, showSuccess } from "../../ui/actions";
+import {
+  showError,
+  setShowRegisterModal,
+  showSuccess,
+  setShowSignInModal,
+} from "../../ui/actions";
 
 jest.mock("../../../services");
 
@@ -55,13 +60,13 @@ describe("User SignIn", () => {
     jest.clearAllMocks();
   });
 
-  it("dispatches setIsAuthenticating and setAuthToken on happy registration", async () => {
+  it("dispatches setIsAuthenticating and setAuthToken on happy sign-in", async () => {
     const authToken = "TEST_AUTH";
     const dispatch = jest.fn();
-    UserService.prototype.registerUser = (): Promise<string> =>
+    UserService.prototype.signInUser = (): Promise<string> =>
       new Promise((res: Function) => res(authToken));
 
-    await registerUser("joe.bloggs", "joe.bloggs@invalid.com", "password")(
+    await signInUser("joe.bloggs@invalid.com", "password")(
       dispatch,
       jest.fn(),
       {}
@@ -71,19 +76,19 @@ describe("User SignIn", () => {
     expect(dispatch).toHaveBeenNthCalledWith(2, setAuthToken(authToken));
     expect(dispatch).toHaveBeenNthCalledWith(
       3,
-      showSuccess("Registration Successful!")
+      showSuccess("Sign-In Successful!")
     );
-    expect(dispatch).toHaveBeenNthCalledWith(4, setShowRegisterModal(false));
+    expect(dispatch).toHaveBeenNthCalledWith(4, setShowSignInModal(false));
     expect(dispatch).toHaveBeenNthCalledWith(5, setIsAuthenticating(false));
   });
 
-  it("dispatches setIsAuthenticating and showError on sad registration", async () => {
+  it("dispatches setIsAuthenticating and showError on sad sign-in", async () => {
     const sadMessage = "It went bad :(";
     const dispatch = jest.fn();
-    UserService.prototype.registerUser = (): Promise<string> =>
+    UserService.prototype.signInUser = (): Promise<string> =>
       new Promise((res: Function, rej: Function) => rej(new Error(sadMessage)));
 
-    await registerUser("joe.bloggs", "joe.bloggs@invalid.com", "password")(
+    await signInUser("joe.bloggs@invalid.com", "password")(
       dispatch,
       jest.fn(),
       {}

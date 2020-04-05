@@ -5,6 +5,7 @@ import {
   HIDE_ERROR,
   SHOW_SUCCESS,
   HIDE_SUCCESS,
+  SET_SHOW_SIGN_IN_MODAL,
 } from "./types";
 
 export const showError = (errorMessage: string): UIActionTypes => ({
@@ -27,5 +28,10 @@ export const hideSuccess = (): UIActionTypes => ({
 
 export const setShowRegisterModal = (show: boolean): UIActionTypes => ({
   type: SET_SHOW_REGISTER_MODAL,
+  show,
+});
+
+export const setShowSignInModal = (show: boolean): UIActionTypes => ({
+  type: SET_SHOW_SIGN_IN_MODAL,
   show,
 });

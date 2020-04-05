@@ -9,6 +9,7 @@ describe("UI Selector", () => {
     showSuccess: false,
     successMessage: "",
     showRegisterModal: false,
+    showSignInModal: false,
   };
 
   const state: PipelinerState = {

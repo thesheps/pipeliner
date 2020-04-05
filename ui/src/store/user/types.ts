@@ -2,7 +2,7 @@ export const SET_IS_AUTHENTICATING = "SET_IS_AUTHENTICATING";
 export const SET_AUTH_TOKEN = "SET_AUTH_TOKEN";
 export const SET_AUTH_FAILED = "SET_AUTH_FAILED";
 
-export interface SetIsRegisteringAction {
+export interface SetIsAuthenticatingAction {
   type: typeof SET_IS_AUTHENTICATING;
   isAuthenticating: boolean;
 }
@@ -18,7 +18,7 @@ export interface SetAuthFailedAction {
 }
 
 export type UserActionTypes =
-  | SetIsRegisteringAction
+  | SetIsAuthenticatingAction
   | SetAuthTokenAction
   | SetAuthFailedAction;
 

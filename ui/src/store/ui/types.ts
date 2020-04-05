@@ -1,4 +1,5 @@
 export const SET_SHOW_REGISTER_MODAL = "SET_SHOW_REGISTER_MODAL";
+export const SET_SHOW_SIGN_IN_MODAL = "SET_SHOW_SIGN_IN_MODAL";
 export const SHOW_ERROR = "SHOW_ERROR";
 export const HIDE_ERROR = "HIDE_ERROR";
 export const SHOW_SUCCESS = "SHOW_SUCCESS";
@@ -27,15 +28,22 @@ export interface SetShowRegisterModalAction {
   show: boolean;
 }
 
+export interface SetShowSignInModalAction {
+  type: typeof SET_SHOW_SIGN_IN_MODAL;
+  show: boolean;
+}
+
 export type UIActionTypes =
   | ShowErrorAction
   | HideErrorAction
   | ShowSuccessAction
   | HideSuccessAction
-  | SetShowRegisterModalAction;
+  | SetShowRegisterModalAction
+  | SetShowSignInModalAction;
 
 export interface UIState {
   showRegisterModal: boolean;
+  showSignInModal: boolean;
   showError: boolean;
   showSuccess: boolean;
   errorMessage: string;

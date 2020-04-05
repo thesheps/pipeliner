@@ -6,7 +6,7 @@ import {
 import { setIsAuthenticating, setAuthToken, setAuthFailed } from "../actions";
 
 describe("User actions", () => {
-  describe("SetIsRegisteringAction", () => {
+  describe("SetIsAuthenticatingAction", () => {
     it("creates an action with isAuthenticating as true", () => {
       const action = setIsAuthenticating(true);
 

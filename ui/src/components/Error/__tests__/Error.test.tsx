@@ -57,6 +57,7 @@ describe("Error", () => {
       showSuccess: false,
       successMessage: "",
       showRegisterModal: false,
+      showSignInModal: false,
     };
 
     const initialPipelinerState = {

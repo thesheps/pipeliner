@@ -4,6 +4,7 @@ import {
   hideError,
   hideSuccess,
   setShowRegisterModal,
+  setShowSignInModal,
 } from "../actions";
 import {
   SHOW_ERROR,
@@ -11,6 +12,7 @@ import {
   SET_SHOW_REGISTER_MODAL,
   SHOW_SUCCESS,
   HIDE_SUCCESS,
+  SET_SHOW_SIGN_IN_MODAL,
 } from "../types";
 
 describe("UI actions", () => {
@@ -52,5 +54,15 @@ describe("UI actions", () => {
   it("creates HIDE_REGISTER_MODAL action", () => {
     const action = setShowRegisterModal(false);
     expect(action).toEqual({ type: SET_SHOW_REGISTER_MODAL, show: false });
+  });
+
+  it("creates SHOW_SIGN_IN_MODAL action", () => {
+    const action = setShowSignInModal(true);
+    expect(action).toEqual({ type: SET_SHOW_SIGN_IN_MODAL, show: true });
+  });
+
+  it("creates HIDE_SIGN_IN_MODAL action", () => {
+    const action = setShowSignInModal(false);
+    expect(action).toEqual({ type: SET_SHOW_SIGN_IN_MODAL, show: false });
   });
 });

@@ -1,6 +1,11 @@
 import { uiReducer } from "../reducer";
 import { initialUIState } from "../initialState";
-import { showError, setShowRegisterModal, showSuccess } from "../actions";
+import {
+  showError,
+  setShowRegisterModal,
+  showSuccess,
+  setShowSignInModal,
+} from "../actions";
 
 describe("UI Reducers", () => {
   it("returns a state containing the the specified error message", () => {
@@ -40,6 +45,24 @@ describe("UI Reducers", () => {
     expect(newState).toEqual({
       ...initialUIState,
       showRegisterModal: false,
+    });
+  });
+
+  it("returns a state setting showSignInModal to true", () => {
+    const newState = uiReducer(initialUIState, setShowSignInModal(true));
+
+    expect(newState).toEqual({
+      ...initialUIState,
+      showSignInModal: true,
+    });
+  });
+
+  it("returns a state setting showSignInModal to false", () => {
+    const newState = uiReducer(initialUIState, setShowSignInModal(false));
+
+    expect(newState).toEqual({
+      ...initialUIState,
+      showSignInModal: false,
     });
   });
 });

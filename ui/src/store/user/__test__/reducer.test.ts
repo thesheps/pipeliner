@@ -16,6 +16,7 @@ describe("Reducers", () => {
     expect(newState).toEqual({
       ...initialState,
       authToken,
+      isSignedIn: true,
     });
   });
 

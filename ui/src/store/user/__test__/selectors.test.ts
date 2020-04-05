@@ -16,6 +16,7 @@ describe("User Selector", () => {
       showSuccess: false,
       successMessage: "",
       showRegisterModal: false,
+      showSignInModal: false,
     },
     user,
   };

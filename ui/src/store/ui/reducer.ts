@@ -7,6 +7,7 @@ import {
   SET_SHOW_REGISTER_MODAL,
   SHOW_SUCCESS,
   HIDE_SUCCESS,
+  SET_SHOW_SIGN_IN_MODAL,
 } from "./types";
 
 export const uiReducer = (
@@ -28,6 +29,8 @@ export const uiReducer = (
       return { ...state, showSuccess: false, successMessage: "" };
     case SET_SHOW_REGISTER_MODAL:
       return { ...state, showRegisterModal: action.show };
+    case SET_SHOW_SIGN_IN_MODAL:
+      return { ...state, showSignInModal: action.show };
     default:
       return state;
   }

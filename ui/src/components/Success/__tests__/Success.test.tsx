@@ -57,6 +57,7 @@ describe("Success", () => {
       showSuccess: true,
       successMessage: "Yay!",
       showRegisterModal: false,
+      showSignInModal: false,
     };
 
     const initialPipelinerState = {
