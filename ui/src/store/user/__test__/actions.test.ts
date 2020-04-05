@@ -2,8 +2,14 @@ import {
   SET_IS_AUTHENTICATING,
   SET_AUTH_TOKEN,
   SET_AUTH_FAILED,
+  SIGN_OUT,
 } from "../types";
-import { setIsAuthenticating, setAuthToken, setAuthFailed } from "../actions";
+import {
+  setIsAuthenticating,
+  setAuthToken,
+  setAuthFailed,
+  signOutUser,
+} from "../actions";
 
 describe("User actions", () => {
   describe("SetIsAuthenticatingAction", () => {
@@ -44,6 +50,14 @@ describe("User actions", () => {
       expect(action).toEqual({
         type: SET_AUTH_FAILED,
         errorMessage: errorMessage,
+      });
+    });
+
+    it("signs the user out", () => {
+      const action = signOutUser();
+
+      expect(action).toEqual({
+        type: SIGN_OUT,
       });
     });
   });

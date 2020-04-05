@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 import { PipelinerState } from "../../store/types";
 import { uiSelector } from "../../store/ui/selectors";
-import { registerUser } from "../../store/user/thunks";
+import { registerUserThunk } from "../../store/user/thunks";
 import { setShowRegisterModal } from "../../store/ui/actions";
 
 export interface RegisterProps {
@@ -135,6 +135,6 @@ const mapStateToProps = (state: PipelinerState): StateProps => {
 };
 
 export const RegisterContainer = connect(mapStateToProps, {
-  registerUser,
+  registerUser: registerUserThunk,
   setShowRegisterModal,
 })(Register);

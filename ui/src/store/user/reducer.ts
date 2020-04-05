@@ -4,6 +4,7 @@ import {
   UserActionTypes,
   SET_IS_AUTHENTICATING,
   SET_AUTH_TOKEN,
+  SIGN_OUT,
 } from "./types";
 
 export const userReducer = (
@@ -15,6 +16,8 @@ export const userReducer = (
       return { ...state, isAuthenticating: action.isAuthenticating };
     case SET_AUTH_TOKEN:
       return { ...state, authToken: action.authToken, isSignedIn: true };
+    case SIGN_OUT:
+      return { ...state, authToken: null, isSignedIn: false };
     default:
       return state;
   }

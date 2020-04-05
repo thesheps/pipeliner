@@ -1,6 +1,10 @@
 import { UserService } from "../../../services";
-import { registerUser, signInUser } from "../thunks";
-import { setIsAuthenticating, setAuthToken } from "../actions";
+import {
+  registerUserThunk,
+  signInUserThunk,
+  signOutUserThunk,
+} from "../thunks";
+import { setIsAuthenticating, setAuthToken, signOutUser } from "../actions";
 import {
   showError,
   setShowRegisterModal,
@@ -21,7 +25,7 @@ describe("User Registration", () => {
     UserService.prototype.registerUser = (): Promise<string> =>
       new Promise((res: Function) => res(authToken));
 
-    await registerUser("joe.bloggs", "joe.bloggs@invalid.com", "password")(
+    await registerUserThunk("joe.bloggs", "joe.bloggs@invalid.com", "password")(
       dispatch,
       jest.fn(),
       {}
@@ -43,7 +47,7 @@ describe("User Registration", () => {
     UserService.prototype.registerUser = (): Promise<string> =>
       new Promise((res: Function, rej: Function) => rej(new Error(sadMessage)));
 
-    await registerUser("joe.bloggs", "joe.bloggs@invalid.com", "password")(
+    await registerUserThunk("joe.bloggs", "joe.bloggs@invalid.com", "password")(
       dispatch,
       jest.fn(),
       {}
@@ -66,7 +70,7 @@ describe("User SignIn", () => {
     UserService.prototype.signInUser = (): Promise<string> =>
       new Promise((res: Function) => res(authToken));
 
-    await signInUser("joe.bloggs@invalid.com", "password")(
+    await signInUserThunk("joe.bloggs@invalid.com", "password")(
       dispatch,
       jest.fn(),
       {}
@@ -88,7 +92,7 @@ describe("User SignIn", () => {
     UserService.prototype.signInUser = (): Promise<string> =>
       new Promise((res: Function, rej: Function) => rej(new Error(sadMessage)));
 
-    await signInUser("joe.bloggs@invalid.com", "password")(
+    await signInUserThunk("joe.bloggs@invalid.com", "password")(
       dispatch,
       jest.fn(),
       {}
@@ -97,5 +101,15 @@ describe("User SignIn", () => {
     expect(dispatch).toHaveBeenNthCalledWith(1, setIsAuthenticating(true));
     expect(dispatch).toHaveBeenNthCalledWith(2, showError(sadMessage));
     expect(dispatch).toHaveBeenNthCalledWith(3, setIsAuthenticating(false));
+  });
+
+  it("dispatches signOut and showSuccess on sign-out", async () => {
+    const successMessage = "Sign-Out Successful!";
+    const dispatch = jest.fn();
+
+    await signOutUserThunk()(dispatch, jest.fn(), {});
+
+    expect(dispatch).toHaveBeenNthCalledWith(1, signOutUser());
+    expect(dispatch).toHaveBeenNthCalledWith(2, showSuccess(successMessage));
   });
 });

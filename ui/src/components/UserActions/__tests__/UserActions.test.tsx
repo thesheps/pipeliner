@@ -60,4 +60,24 @@ describe("UserActions", () => {
 
     expect(queryByTestId("signIn-dialog-button")).toBeNull();
   });
+
+  it("renders signOut button when signed-in", () => {
+    const { queryByTestId } = render(
+      <Provider store={store}>
+        <UserActions isSignedIn={true} />
+      </Provider>
+    );
+
+    expect(queryByTestId("signOut-button")).toBeTruthy();
+  });
+
+  it("does not render signOut button when not signed-in", () => {
+    const { queryByTestId } = render(
+      <Provider store={store}>
+        <UserActions isSignedIn={false} />
+      </Provider>
+    );
+
+    expect(queryByTestId("signOut-button")).toBeNull();
+  });
 });

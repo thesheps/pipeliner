@@ -1,6 +1,6 @@
 import { UserState } from "../types";
 import { userReducer } from "../reducer";
-import { setAuthToken, setIsAuthenticating } from "../actions";
+import { setAuthToken, setIsAuthenticating, signOutUser } from "../actions";
 
 describe("Reducers", () => {
   const initialState: UserState = {
@@ -30,6 +30,16 @@ describe("Reducers", () => {
     expect(newState).toEqual({
       ...initialState,
       isAuthenticating,
+    });
+  });
+
+  it("returns a state with the user signed out", () => {
+    const newState = userReducer(initialState, signOutUser());
+
+    expect(newState).toEqual({
+      ...initialState,
+      isSignedIn: false,
+      authToken: null,
     });
   });
 });

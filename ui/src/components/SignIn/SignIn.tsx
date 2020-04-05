@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 import { PipelinerState } from "../../store/types";
 import { uiSelector } from "../../store/ui/selectors";
-import { signInUser } from "../../store/user/thunks";
+import { signInUserThunk } from "../../store/user/thunks";
 import { setShowSignInModal } from "../../store/ui/actions";
 
 export interface SignInProps {
@@ -56,10 +56,10 @@ export const SignIn = ({
       </Button>
 
       <Dialog open={showSignInModal} onClose={() => setShowSignInModal(false)}>
-        <DialogTitle id="form-dialog-title">SignIn</DialogTitle>
+        <DialogTitle id="form-dialog-title">Sign In</DialogTitle>
 
         <DialogContent>
-          <DialogContentText>SignIn here to get going!</DialogContentText>
+          <DialogContentText>Sign In here to get going!</DialogContentText>
 
           <TextField
             value={emailAddress}
@@ -99,7 +99,7 @@ export const SignIn = ({
             color="primary"
             disabled={!emailAddress || !password || !!emailError}
           >
-            SignIn
+            Sign In
           </Button>
         </DialogActions>
       </Dialog>
@@ -116,6 +116,6 @@ const mapStateToProps = (state: PipelinerState): StateProps => {
 };
 
 export const SignInContainer = connect(mapStateToProps, {
-  signInUser,
+  signInUser: signInUserThunk,
   setShowSignInModal,
 })(SignIn);

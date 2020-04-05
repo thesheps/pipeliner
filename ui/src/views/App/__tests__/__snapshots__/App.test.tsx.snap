@@ -46,7 +46,7 @@ exports[`App renders correctly 1`] = `
         <span
           class="MuiButton-label"
         >
-          SignIn
+          Sign In
         </span>
         <span
           class="MuiTouchRipple-root"

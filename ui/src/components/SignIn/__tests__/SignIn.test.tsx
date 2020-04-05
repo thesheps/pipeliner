@@ -36,7 +36,7 @@ describe("SignIn", () => {
       />
     );
 
-    fireEvent.click(getByText("SignIn"));
+    fireEvent.click(getByText("Sign In"));
 
     expect(setShowSignInModal).toHaveBeenCalled();
   });

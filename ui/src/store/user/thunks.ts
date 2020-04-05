@@ -1,11 +1,16 @@
 import { AnyAction } from "redux";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
 
-import { setIsAuthenticating, setAuthToken } from "./actions";
+import { setIsAuthenticating, setAuthToken, signOutUser } from "./actions";
 import { UserService } from "../../services";
-import { showError, setShowRegisterModal, showSuccess, setShowSignInModal } from "../ui/actions";
+import {
+  showError,
+  setShowRegisterModal,
+  showSuccess,
+  setShowSignInModal,
+} from "../ui/actions";
 
-export const registerUser = (
+export const registerUserThunk = (
   username: string,
   emailAddress: string,
   password: string
@@ -32,7 +37,7 @@ export const registerUser = (
   }
 };
 
-export const signInUser = (
+export const signInUserThunk = (
   emailAddress: string,
   password: string
 ): ThunkAction<Promise<void>, {}, {}, AnyAction> => async (
@@ -52,4 +57,14 @@ export const signInUser = (
   } finally {
     dispatch(setIsAuthenticating(false));
   }
+};
+
+export const signOutUserThunk = (): ThunkAction<
+  Promise<void>,
+  {},
+  {},
+  AnyAction
+> => async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+  dispatch(signOutUser());
+  dispatch(showSuccess("Sign-Out Successful!"));
 };
