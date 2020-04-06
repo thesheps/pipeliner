@@ -75,7 +75,8 @@ describe("Users", () => {
               process.env.PIPELINER_JWT_KEY
             );
 
-            expect(result).toEqual(expect.objectContaining(signIn));
+            expect(result).toHaveProperty("iat");
+            expect(result).toHaveProperty("userId");
           });
       });
     });

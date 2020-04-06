@@ -24,8 +24,8 @@ signInRouter.post("/sign-in", checks, async (req, res) => {
   const signIn = req.body as SignIn;
 
   try {
-    await getUser(signIn.emailAddress, signIn.password);
-    const token = jwt.sign(signIn, process.env.PIPELINER_JWT_KEY);
+    const user = await getUser(signIn.emailAddress, signIn.password);
+    const token = jwt.sign({ userId: user.id }, process.env.PIPELINER_JWT_KEY);
 
     return res.status(200).json(token);
   } catch (error) {

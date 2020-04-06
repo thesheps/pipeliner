@@ -22,8 +22,8 @@ registerRouter.post("/register", checks, async (req, res) => {
   }
 
   try {
-    await createUser(req.body);
-    const token = jwt.sign(req.body, process.env.PIPELINER_JWT_KEY);
+    const user = await createUser(req.body);
+    const token = jwt.sign({ userId: user.id }, process.env.PIPELINER_JWT_KEY);
 
     return res.status(200).json(token);
   } catch (error) {
