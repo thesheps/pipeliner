@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 
 import { InvalidAuthTokenError } from "../../errors";
+import { User } from "@pipeliner/db/src";
 
 const parseCookie = (cookie: string): string => {
   var value = "; " + cookie;
@@ -17,12 +18,11 @@ export const authMiddleware = (req: Request, res: Response, next: Function) => {
     const tokenString = parseCookie(req.headers.cookie);
     if (!tokenString?.length) throw new InvalidAuthTokenError();
 
-    console.log(tokenString);
-    req["authToken"] = jwt.verify(tokenString, process.env.PIPELINER_JWT_KEY);
+    const payload = jwt.verify(tokenString, process.env.PIPELINER_JWT_KEY);
+    req["user"] = payload as User;
 
     next();
   } catch (error) {
-    console.log(error);
     res.status(401).json("Unauthorized");
   }
 };

@@ -5,6 +5,7 @@ export = {
     password: process.env.PIPELINER_DB_PASSWORD,
     host: process.env.PIPELINER_DB_HOST,
     port: parseInt(process.env.PIPELINER_DB_PORT),
-    dialect: "postgres"
-  }
+    dialect: "postgres",
+    logging: false,
+  },
 };

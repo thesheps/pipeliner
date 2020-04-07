@@ -1,8 +1,11 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import { check, validationResult } from "express-validator";
 
 import { createJob, DuplicateJobNameError } from "@pipeliner/db";
+import { Job } from "@pipeliner/db/src/models/job";
+
 import { authMiddleware } from "../../middlewares/authMiddleware/authMiddleware";
+import { User } from "../../models";
 
 const checks = [
   check("name").isLength({ max: 128 }),
@@ -12,7 +15,7 @@ const checks = [
 const createJobRouter = express.Router();
 createJobRouter.use(authMiddleware);
 
-createJobRouter.post("/create", checks, async (req, res) => {
+createJobRouter.post("/create", checks, async (req: Request, res: Response) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -22,9 +25,11 @@ createJobRouter.post("/create", checks, async (req, res) => {
   }
 
   try {
-    const job = await createJob(req.body);
+    const user = req["user"] as User;
+    const job: Job = { ...req.body, ownerId: user.userId };
+    const createdJob = await createJob(job);
 
-    return res.status(200).json(job);
+    return res.status(200).json(createdJob);
   } catch (error) {
     if (error instanceof DuplicateJobNameError)
       return res.status(409).json(error.message);

@@ -48,8 +48,8 @@ describe("authMiddleware", () => {
 
     authMiddleware(request, null, next);
 
-    expect(request["authToken"]).toHaveProperty("iat");
-    expect(request["authToken"].userId).toBe("USERID");
+    expect(request["user"]).toHaveProperty("iat");
+    expect(request["user"].userId).toBe("USERID");
     expect(next).toHaveBeenCalled();
   });
 });
