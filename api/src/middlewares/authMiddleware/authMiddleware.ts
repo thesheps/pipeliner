@@ -17,10 +17,12 @@ export const authMiddleware = (req: Request, res: Response, next: Function) => {
     const tokenString = parseCookie(req.headers.cookie);
     if (!tokenString?.length) throw new InvalidAuthTokenError();
 
+    console.log(tokenString);
     req["authToken"] = jwt.verify(tokenString, process.env.PIPELINER_JWT_KEY);
 
     next();
   } catch (error) {
+    console.log(error);
     res.status(401).json("Unauthorized");
   }
 };

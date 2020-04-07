@@ -1,9 +1,13 @@
+import jwt from "jsonwebtoken";
 import request from "supertest";
 
 import { app } from "../../../app";
 import { CreateJob } from "../../../models/jobs";
 
 process.env.PIPELINER_JWT_KEY = "myTestKey";
+
+const getJwtToken = () =>
+  jwt.sign({ userId: "fakeUser" }, process.env.PIPELINER_JWT_KEY);
 
 describe("Jobs", () => {
   describe("registration", () => {
@@ -23,6 +27,7 @@ describe("Jobs", () => {
     ) => {
       await request(app)
         .post("/jobs/create")
+        .set("Cookie", [`authToken=${getJwtToken()}`])
         .send(createJob)
         .expect(code)
         .then((res) => {

@@ -1,13 +1,16 @@
 import express from "express";
 import { check, validationResult } from "express-validator";
 
-import { createJob, JobError, DuplicateJobNameError } from "@pipeliner/db";
+import { createJob, DuplicateJobNameError } from "@pipeliner/db";
+import { authMiddleware } from "../../middlewares/authMiddleware/authMiddleware";
 
-const createJobRouter = express.Router();
 const checks = [
   check("name").isLength({ max: 128 }),
   check("repoPassword").isLength({ max: 128 }),
 ];
+
+const createJobRouter = express.Router();
+createJobRouter.use(authMiddleware);
 
 createJobRouter.post("/create", checks, async (req, res) => {
   const errors = validationResult(req);
