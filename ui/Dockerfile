@@ -1,6 +1,6 @@
 FROM node:13-alpine
 
-WORKDIR /usr/pipeliner-ui
+WORKDIR /usr/app
 COPY package*.json ./
 COPY . .
 RUN npm install ts-node -g

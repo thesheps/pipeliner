@@ -1,8 +1,7 @@
 import express, { Request, Response } from "express";
 import { check, validationResult } from "express-validator";
 
-import { createJob, DuplicateJobNameError } from "@pipeliner/db";
-import { Job } from "@pipeliner/db/src/models/job";
+import { createJob, DuplicateJobNameError, Job } from "@pipeliner/db";
 
 import { authMiddleware } from "../../middlewares/authMiddleware/authMiddleware";
 import { User } from "../../models";
