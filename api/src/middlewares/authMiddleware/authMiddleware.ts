@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 
 import { InvalidAuthTokenError } from "../../errors";
-import { User } from "@pipeliner/db/src";
+import { User } from "@pipeliner/db";
 
 const parseCookie = (cookie: string): string => {
   var value = "; " + cookie;

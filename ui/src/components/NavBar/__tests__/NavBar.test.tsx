@@ -58,7 +58,7 @@ describe("NavBar", () => {
 
     const { queryByTestId } = render(
       <Provider store={store}>
-        <NavBarContainer />
+        <NavBarContainer appName="TestNavBar" />
       </Provider>
     );
 
@@ -77,7 +77,7 @@ describe("NavBar", () => {
 
     const { getByTestId } = render(
       <Provider store={store}>
-        <NavBarContainer />
+        <NavBarContainer appName="TestNavBar" />
       </Provider>
     );
 

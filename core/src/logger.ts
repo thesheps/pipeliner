@@ -3,10 +3,7 @@ import pino from "pino";
 import { Loggable } from "./Loggable";
 
 export const logger = pino({
-  prettyPrint: {
-    translateTime: true,
-    ignore: "pid,hostname"
-  }
+  prettyPrint: true
 });
 
 export const logWithDuration = (loggable: Loggable, fn: Function) => {
